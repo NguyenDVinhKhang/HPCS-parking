@@ -1,8 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
 import {
   Card, CardContent, CardHeader, CardTitle, CardDescription,
 } from "@/components/ui/card";
@@ -93,9 +91,7 @@ export default function StudentsPage() {
   const PRESET_AMOUNTS = [10000, 20000, 50000];
 
   return (
-    <>
-      <Navbar />
-      <main className="flex-1 container mx-auto px-4 py-6 space-y-6">
+    <div className="space-y-6">
 
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -253,8 +249,6 @@ export default function StudentsPage() {
           </div>
 
         </div>
-      </main>
-      <Footer />
-    </>
+    </div>
   );
 }
