@@ -1,17 +1,28 @@
-import cv2
+﻿import os
 import base64
 import time
 import re
 import numpy as np
-import easyocr
 import threading
 
-print("Đang tải AI Model EasyOCR... Vui lòng chờ vài giây...")
-reader = easyocr.Reader(['en'], gpu=False)
-print("Tải AI Model thành công! Camera đã sẵn sàng.")
+# ─── Kiểm tra flag CAMERA_ENABLED ──────────────────────────────────────────
+# Set CAMERA_ENABLED=false trong .env hoặc PowerShell:
+#   $env:CAMERA_ENABLED="false"   hoặc   set CAMERA_ENABLED=false
+_CAMERA_ENABLED = os.getenv("CAMERA_ENABLED", "true").strip().lower() not in ("false", "0", "no")
 
-# EasyOCR/PyTorch không thread-safe khi gọi đồng thời từ nhiều thread
-# Lock này đảm bảo chỉ 1 lần readtext() chạy tại 1 thời điểm
+if _CAMERA_ENABLED:
+    try:
+        import cv2
+        import easyocr
+        print("Đang tải AI Model EasyOCR... Vui lòng chờ vài giây...")
+        reader = easyocr.Reader(['en'], gpu=False)
+        print("Tải AI Model thành công! Camera đã sẵn sàng.")
+    except ImportError as e:
+        print(f"[Camera] CảNH BÁO: Thiếu thư viện ({e}). Tự động chuyển sang STUB mode.")
+        _CAMERA_ENABLED = False
+else:
+    print("[Camera] CAMERA_ENABLED=false → Dùng STUB mode, plate='UNKNOWN'.")
+
 _ocr_lock = threading.Lock()
 
 # ─── Camera Manager với Background Frame-Grab Thread ──────────────────────────
@@ -122,9 +133,22 @@ class CameraManager:
 
 
 # Singleton instance
-camera_manager = CameraManager(source=0)
-# Khởi động ngay khi server load để camera warm-up sớm
-camera_manager.start()
+if _CAMERA_ENABLED:
+    camera_manager = CameraManager(source=0)
+    camera_manager.start()
+else:
+    # ─── STUB CameraManager khi CAMERA_ENABLED=false ───────────────────
+    class _StubCameraManager:
+        """Stub: trả None cho mọi call — gate_router sẽ xử lý fallback UNKNOWN."""
+        def capture_frame(self):     return None
+        def capture_raw_frame(self): return None
+        def get_status(self):        return False
+        def release(self):           pass
+        def initialize(self):        pass
+        def start(self):             pass
+        def stop(self):              pass
+    camera_manager = _StubCameraManager()
+    print("[Camera] Stub CameraManager được khởi tạo.")
 
 # ─── OCR Preprocessing Pipeline ───────────────────────────────────────────────
 def preprocess_frame(frame: np.ndarray) -> list:
@@ -348,6 +372,8 @@ def _run_ocr_on_frame(frame: np.ndarray) -> dict:
 # ─── Public API ───────────────────────────────────────────────────────────────
 def scan_plate(base64_img_str: str) -> dict:
     """Nhận diện biển số từ ảnh Base64."""
+    if not _CAMERA_ENABLED:
+        return {"plate_number": "UNKNOWN", "confidence": 0.0}
     try:
         if "," in base64_img_str:
             base64_img_str = base64_img_str.split(",")[1]
@@ -362,8 +388,10 @@ def scan_plate(base64_img_str: str) -> dict:
         return {"plate_number": "LỖI HỆ THỐNG", "confidence": 0.0}
 
 
-def scan_plate_from_raw(frame: np.ndarray) -> dict:
+def scan_plate_from_raw(frame) -> dict:
     """Nhận diện biển số từ raw numpy frame."""
+    if not _CAMERA_ENABLED or frame is None:
+        return {"plate_number": "UNKNOWN", "confidence": 0.0}
     try:
         return _run_ocr_on_frame(frame)
     except Exception as e:

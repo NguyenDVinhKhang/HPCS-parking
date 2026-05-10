@@ -1,9 +1,10 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
 from camera.scanner import camera_manager, scan_plate, scan_plate_from_raw
-from payment import router as payment_router
+from payos_router import router as payment_router
 import base64
-import cv2
 
 app = FastAPI(title="HPCS Camera Service")
 
@@ -19,13 +20,19 @@ app.add_middleware(
 # Mount PayOS Payment Router
 app.include_router(payment_router)
 
-# Mount Users Router
-from routers.users import router as users_router
-app.include_router(users_router)
+# Mount Students Router (sinh viên RFID)
+from routers.students import router as students_router
+app.include_router(students_router)
 
 # Mount Gate Router
 from routers.gate_router import router as gate_router
 app.include_router(gate_router)
+
+# Mount Static Files — phục vụ ảnh biển số qua HTTP
+# URL: http://localhost:8000/static/plates/entry/xxx.jpg
+_static_dir = Path(__file__).parent / "static"
+_static_dir.mkdir(exist_ok=True)   # tạo thư mục nếu chưa có
+app.mount("/static", StaticFiles(directory=str(_static_dir)), name="static")
 
 @app.on_event("shutdown")
 def shutdown_event():

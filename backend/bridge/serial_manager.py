@@ -100,6 +100,10 @@ class SerialManager:
             self._ser = None
         return None
 
+    def is_connected(self) -> bool:
+        """Trả về True nếu cổng serial đang mở và sẵn sàng."""
+        return bool(self._ser and self._ser.is_open)
+
     @property
     def port(self) -> str:
         return self._port

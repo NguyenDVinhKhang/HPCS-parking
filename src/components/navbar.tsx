@@ -23,15 +23,17 @@ import {
   UserCircle,
   LogOut,
   User,
+  GraduationCap,
 } from "lucide-react";
 
 const navItems = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/vehicles", label: "Phương tiện", icon: Car },
+  { href: "/",          label: "Dashboard",   icon: LayoutDashboard },
+  { href: "/students",  label: "Sinh viên",   icon: GraduationCap },
+  { href: "/vehicles",  label: "Phương tiện", icon: Car },
   { href: "/parking-slots", label: "Bãi đỗ", icon: ParkingSquare },
-  { href: "/history", label: "Lịch sử", icon: History },
+  { href: "/history",   label: "Lịch sử",     icon: History },
   { href: "/transactions", label: "Doanh thu", icon: ChartNoAxesCombined },
-  { href: "/camera", label: "Camera", icon: Camera },
+  { href: "/camera",    label: "Camera",      icon: Camera },
 ];
 
 export function Navbar() {

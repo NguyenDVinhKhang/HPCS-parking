@@ -8,7 +8,8 @@ Dùng cho luồng Khách vãng lai (Guest) tại cổng ra - phí 4,000 VND.
 import os
 import hmac
 import hashlib
-import json
+import logging
+import requests as http_requests
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import JSONResponse
 from payos import PayOS
@@ -17,14 +18,24 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+log = logging.getLogger(__name__)
+
+# URL của bridge CommandServer (chạy trên port 5001)
+BRIDGE_PUSH_URL = "http://localhost:5001/send"
+
 router = APIRouter(prefix="/api/payment", tags=["Payment"])
 
 # ─── Khởi tạo PayOS Client ───────────────────────────────────────────────────
-payos_client = PayOS(
-    client_id=os.getenv("PAYOS_CLIENT_ID"),
-    api_key=os.getenv("PAYOS_API_KEY"),
-    checksum_key=os.getenv("PAYOS_CHECKSUM_KEY"),
-)
+try:
+    payos_client = PayOS(
+        client_id=os.getenv("PAYOS_CLIENT_ID"),
+        api_key=os.getenv("PAYOS_API_KEY"),
+        checksum_key=os.getenv("PAYOS_CHECKSUM_KEY"),
+    )
+    log.info("PayOS client khởi tạo thành công.")
+except Exception as e:
+    payos_client = None
+    log.warning("PayOS client KHÔNG khởi tạo được (%s). API QR sẽ trả 503.", e)
 
 # ─── Lưu trạng thái thanh toán trong bộ nhớ (thay bằng DB sau) ──────────────
 # key = order_code (session_id), value = "PENDING" | "PAID" | "CANCELLED"
@@ -131,8 +142,24 @@ async def payos_webhook(request: Request):
         if payment_status == "PAID":
             _payment_status[order_code] = "PAID"
             # TODO: Cập nhật DB ParkingSessions.status = 'CLOSED'
-            # TODO: Kích Relay mở Barrier
-            print(f"[BARRIER] Mo Barrier cho Session {order_code} tu dong!")
+            print(f"[PayOS] Session {order_code} đã thanh toán → push OPEN-OUT")
+
+            # Push OPEN-OUT xuống ESP32 qua bridge CommandServer
+            try:
+                resp = http_requests.post(
+                    BRIDGE_PUSH_URL,
+                    json={"cmd": "OPEN-OUT"},
+                    timeout=3,
+                )
+                if resp.ok:
+                    log.info("[PayOS Webhook] Bridge push OPEN-OUT: OK")
+                else:
+                    log.warning("[PayOS Webhook] Bridge push thất bại: %s", resp.text)
+            except http_requests.exceptions.ConnectionError:
+                log.error(
+                    "[PayOS Webhook] Không kết nối được bridge (port 5001). "
+                    "ESP32 sẽ không mở barrier tự động."
+                )
 
         elif payment_status == "CANCELLED":
             _payment_status[order_code] = "CANCELLED"
