@@ -1,0 +1,4111 @@
+
+================================================================================
+Reading: C1SE.08_ProductBacklog_HPCS_ver1.0.docx
+================================================================================
+International School
+Capstone Project 1
+CMU-SE 450 – C1SE.82
+Product Backlog
+Version 1.0
+Date: March 29th, 2026
+Hybrid Parking Control System
+(HPCS)
+Submitted by
+Ninh, Vu Ha
+Hieu, Le Minh
+Khang, Nguyen Dinh Vinh
+Dung, Le Trung
+Nhat, Le Van
+Approved by
+Trung, Tran Thanh
+Proposal Review Panel Representative
+Signature
+Date
+Name
+Capstone Project 1 – Mentor: Trung, Tran Thanh
+PROJECT INFORMATION
+Project acronym
+HPCS
+Project Title
+Hybrid Parking Control System
+Start Date
+February 24th, 2026
+End Date
+June 20th, 2026
+Lead Institution
+International School, Duy Tan University
+Project Mentor
+Trung, Tran Thanh
+Email: trantrungs269@gmail.com
+Project Leader & contact details
+Khang, Nguyen Dinh Vinh
+Email: khanglucky@gmail.com
+Tel: 0704667333
+Student ID: 28211141406
+Scrum Master & contact details
+Ninh, Vu Ha
+Email: vuhaninh@dtu.edu.vn
+Tel: 0352637790
+Student ID: 28211105939
+Partner Organization
+Duy Tan University
+Project Web URL
+Student ID
+Name
+Email
+Tel
+Role
+28211105939
+Ninh, Vu Ha
+vuhaninh@dtu.edu.vn
+0352637790
+Scrum Master
+28219045377
+Hieu, Le Minh
+xeniellq1@gmail.com
+0777440100
+Team Member
+28211141406
+Khang, Nguyen Dinh Vinh
+khanglucky@gmail.com
+0704667333
+Project Leader
+28210239671
+Dung, Le Trung
+dunglt.bon245@gmail.com
+0766674467
+Team Member
+28218044202
+Nhat, Le Van
+nhatle08052004n@gmail.com
+0394441571
+Team Member
+DOCUMENT APPROVALS
+The following signatures are required for approval of this document.
+Name
+Student ID
+Role
+Signature
+Date
+Ninh, Vu Ha
+28211105939
+Scrum Master
+Hieu, Le Minh
+28219045377
+Team Member
+Khang, Nguyen Dinh Vinh
+28211141406
+Project Leader
+Dung, Le Trung
+28210239671
+Team Member
+Nhat, Le Van
+28218044202
+Team Member
+DOCUMENT NAME
+Document Title
+Product Backlog Document
+Author(s)
+HPCS Project Team
+Role
+Project Team
+Date
+March 29th, 2026
+File name
+C1SE.82_ProductBacklog_HPCS_ver1.0.docx
+REVISION HISTORY
+Version
+Person(s)
+Date
+Description
+1.0
+HPCS Project Team
+29-Mar-2026
+Initial release of the HPCS Product Backlog document.
+TABLE OF CONTENTS
+Section
+Title
+1
+Introduction
+1.1
+Purpose
+1.2
+Scope
+1.3
+References
+2
+Product Backlog
+3
+Constraints
+4
+Stakeholders and User Descriptions Summary
+TABLE OF TABLES
+Table No.
+Title
+Table 1
+References
+Table 2
+Product Backlog Specification (Driver / User)
+Table 3
+Product Backlog Specification (Admin / Security Operator)
+Table 4
+Product Backlog Specification (System)
+Table 5
+Product Backlog Specification (Development / Infrastructure)
+Table 6
+Constraints
+Table 7
+Stakeholders and User Descriptions Summary
+1. Introduction
+The HPCS product backlog is a prioritized list of features and quality attributes derived from the approved project proposal. It translates the project scope, functional requirements, non-functional requirements, operating constraints, and stakeholder needs into development-ready backlog items for the Hybrid Parking Control System.
+1.1 Purpose
+• Provide a clear and prioritized backlog for the Hybrid Parking Control System (HPCS).
+• Keep development aligned with the approved project objectives: pay-before-entry processing, license plate recognition, automated barrier control, and supervised operation when needed.
+• Represent both functional scope and major non-functional requirements such as performance, usability, security, reliability, and scalability.
+• Preserve traceability from proposal-based requirements to implementable backlog items for Sprint planning and review.
+1.2 Scope
+This backlog covers the approved HPCS scope for a university parking context. It includes user and vehicle authentication, automated barrier control, prepaid entry payment, license plate recording and matching, parking card/ticket issuance, whitelist-based free access, transaction logging, administrative monitoring, and supporting quality requirements.
+The current version excludes remote mobile booking, advanced long-term AI vehicle tracking, and complex financial accounting for external parking lots. No unrelated sample-domain features are included in this document.
+1.3 References
+Table 1. References
+No.
+Reference
+Purpose
+1
+C1SE.08 Project Proposal Version 1.0, dated February 24th, 2026
+Primary source of truth for HPCS scope, requirements, stakeholders, schedule, and terminology.
+2
+C1SE.82 Product Backlog sample document
+Structure and formatting reference for the Product Backlog document only.
+3
+C1SE.82 User Story sample document
+Structure and formatting reference for the User Story document only.
+2. Product Backlog
+Priorities are set from 1 to 3, where 1 = Must Have / critical MVP, 2 = Should Have / important, and 3 = Could Have / nice to have. If a backlog item depends on another item, it does not carry a lower importance than its prerequisite.
+Table 2. Product Backlog Specification (Driver / User)
+ID
+Theme
+As a/an
+I want to
+So that
+Priority
+PB01
+Entry Plate Capture
+Driver / User
+have my vehicle detected and my license plate captured at the entry gate
+the system can start entry validation automatically and reduce manual processing
+1
+PB02
+Prepaid Entry Payment
+Student Card Holder / Visitor
+pay at the entry gate using a student ID card (contactless) or cash
+access is granted only after payment is confirmed in the pay-before-entry model
+1
+PB03
+Parking Card/Ticket Issuance
+Driver / User
+receive a parking card or ticket after valid payment or whitelist verification
+my entry transaction is linked to a physical credential for later exit validation
+1
+PB04
+Entry Barrier Control
+Driver / User
+have the barrier open only after valid authorization and close safely after passage
+unauthorized vehicles are blocked and entry remains orderly
+1
+PB05
+Whitelist Free Access
+Faculty / Staff Whitelist User
+be recognized for free-access entry when my vehicle or credential is authorized
+I can enter without payment when university policy allows it
+2
+PB06
+Exit Validation and Plate Re-Match
+Driver / User
+present my parking card or ticket and have my exit plate checked against the entry record
+I can leave without additional payment while the system prevents misuse
+1
+PB07
+Gate Guidance
+Driver / User
+receive clear LED instructions and optional voice guidance at the gate
+I can complete the entry and exit flow with minimal confusion or delay
+2
+Table 3. Product Backlog Specification (Admin / Security Operator)
+ID
+Theme
+As a/an
+I want to
+So that
+Priority
+PB08
+Administrator Authentication
+Admin
+sign in securely and access only the functions allowed for my role
+management features and sensitive parking data remain protected
+1
+PB09
+Whitelist and Access Policy Management
+Admin
+maintain whitelist records and free-access rules for eligible users
+gate decisions follow current university access policy
+2
+PB10
+Transaction and Gate Event Logging
+Admin / Security Operator
+view complete records of plate captures, timestamps, gate events, and payment outcomes
+operations remain traceable and auditable
+1
+PB11
+Administrative Dashboard and Reports
+Admin / Security Operator
+see total vehicles, revenue statistics, occupancy status, and recognition accuracy
+I can monitor operations and make data-driven decisions
+2
+PB12
+Device Status Monitoring
+Security Operator
+monitor the status of cameras, barriers, readers, dispensers, speakers, and cash modules
+I can respond quickly when hardware faults or exceptions occur
+2
+Table 4. Product Backlog Specification (System)
+ID
+Theme
+As a/an
+I want to
+So that
+Priority
+PB13
+Encrypted and Protected Data Storage
+System
+encrypt transaction and payment data and restrict access to stored license plate information
+sensitive operational data remains secure
+1
+PB14
+Performance Compliance
+System
+complete payment confirmation and ticket issuance within 5 seconds and exit verification within 3 seconds
+vehicle queues are minimized at both gates
+1
+PB15
+Reliability and LPR Accuracy
+System
+support continuous 24/7 operation and maintain 90–95% recognition accuracy in controlled conditions
+the parking process remains dependable in daily use
+2
+PB16
+Invalid or Mismatched Exit Handling
+System
+keep the barrier closed when the presented credential, transaction, or license plate does not match
+unauthorized exit is prevented and exceptions can be reviewed
+1
+PB17
+Multi-Gate Scalability
+System
+support expansion to multiple entry and exit gates without major redesign
+the campus can scale the solution over time
+3
+Table 5. Product Backlog Specification (Development / Infrastructure)
+ID
+Theme
+As a/an
+I want to
+So that
+Priority
+PB18
+Hardware Integration Framework
+Development Team
+integrate the backend with the camera, barrier controller, card reader, dispenser, and cash module
+automated gate workflows operate reliably end to end
+1
+PB19
+Containerized Environment and Deployment
+Development Team
+build and deploy supported services using Docker and stable development tooling
+the system is easier to set up, test, and deploy consistently
+2
+PB20
+Student Card Data Integration
+Development Team
+connect to the university student ID data source for contactless validation
+card-based payment and authentication can be processed correctly
+2
+3. Constraints
+Table 6. Constraints
+Constraint
+Description
+Development Timeline
+The project is planned from February 24th, 2026 to June 20th, 2026, so delivery must focus on core gate automation, payment, ticketing, and exit validation first.
+Team Capacity
+The delivery team has five members, requiring disciplined role allocation across frontend, backend, database, hardware integration, testing, and documentation.
+Hardware Integration
+HPCS depends on cameras, barrier gates, LED indicators, speakers, card readers, ticket/card dispensers, and cash modules working reliably with the backend.
+Budget
+The prototype budget is limited, so the solution must prioritize low-cost components, staged hardware procurement, or software-first simulation when needed.
+Environment and Lighting
+License plate recognition quality depends on controlled lighting, a proper stopping position, and clean, unobstructed license plates.
+Network Connectivity
+Entry and exit gates require stable connectivity to synchronize transactions, validation status, and reporting data.
+External Dependency
+Contactless student-card validation depends on access to the university student ID data source or a compatible integration endpoint.
+Technology Constraints
+The implementation is limited to the project stack proposed for HPCS: React.js or Flutter, Python backend services, OpenCV plus Tesseract or YOLO, Arduino or Raspberry Pi, MySQL or PostgreSQL, and Docker.
+4. Stakeholders and User Descriptions Summary
+Table 7. Stakeholders and User Descriptions Summary
+Name
+Description
+Role
+University Management
+Owns parking policy, service goals, and operational reporting expectations for campus parking.
+System owner / decision maker
+System Administrators
+Manage authentication, whitelist policy, dashboard access, reports, and protected operational data.
+Administrative users
+Security Team / Operational Supervisors
+Oversee gate activity, monitor devices, review exceptions, and intervene when supervised control is required.
+Operational supervisors
+Students
+Use the parking entry and exit flow, pay by student card or cash when applicable, and expect fast processing at the gate.
+Primary end users
+Faculty and Staff
+May receive whitelist-based free access and still require reliable license plate recognition and transaction recording.
+Privileged end users
+Visitors
+Need a simple pay-before-entry process, clear kiosk guidance, and reliable exit validation.
+External end users
+IT Department
+Supports infrastructure, integration, deployment, security controls, and service continuity.
+Technical stakeholder
+Finance Department
+Uses revenue and transaction information for oversight and reconciliation.
+Reporting stakeholder
+HPCS Project Team
+Designs, builds, tests, documents, and deploys the HPCS prototype within the capstone schedule.
+Delivery team
+
+================================================================================
+Reading: C1SE.82_UserStory_HPCS_ver1.0.docx
+================================================================================
+International School
+Capstone Project 1
+CMU-SE 450 – C1SE.82
+User Story Document
+Version 1.0
+Date: March 29th, 2026
+Hybrid Parking Control System
+(HPCS)
+Submitted by
+Ninh, Vu Ha
+Hieu, Le Minh
+Khang, Nguyen Dinh Vinh
+Dung, Le Trung
+Nhat, Le Van
+Approved by
+Trung, Tran Thanh
+Proposal Review Panel Representative
+Signature
+Date
+Name
+Capstone Project 1 – Mentor: Trung, Tran Thanh
+PROJECT INFORMATION
+Project acronym
+HPCS
+Project Title
+Hybrid Parking Control System
+Start Date
+February 24th, 2026
+End Date
+June 20th, 2026
+Lead Institution
+International School, Duy Tan University
+Project Mentor
+Trung, Tran Thanh
+Email: trantrungs269@gmail.com
+Project Leader & contact details
+Khang, Nguyen Dinh Vinh
+Email: khanglucky@gmail.com
+Tel: 0704667333
+Student ID: 28211141406
+Scrum Master & contact details
+Ninh, Vu Ha
+Email: vuhaninh@dtu.edu.vn
+Tel: 0352637790
+Student ID: 28211105939
+Partner Organization
+Duy Tan University
+Project Web URL
+Student ID
+Name
+Email
+Tel
+Role
+28211105939
+Ninh, Vu Ha
+vuhaninh@dtu.edu.vn
+0352637790
+Scrum Master
+28219045377
+Hieu, Le Minh
+xeniellq1@gmail.com
+0777440100
+Team Member
+28211141406
+Khang, Nguyen Dinh Vinh
+khanglucky@gmail.com
+0704667333
+Project Leader
+28210239671
+Dung, Le Trung
+dunglt.bon245@gmail.com
+0766674467
+Team Member
+28218044202
+Nhat, Le Van
+nhatle08052004n@gmail.com
+0394441571
+Team Member
+DOCUMENT NAME
+Document Title
+User Story Document
+Author(s)
+HPCS Project Team
+Role
+Project Team
+Date
+March 29th, 2026
+File name
+C1SE.82_UserStory_HPCS_ver1.0.docx
+REVISION HISTORY
+Version
+Person(s)
+Date
+Description
+1.0
+HPCS Project Team
+29-Mar-2026
+Initial release of the HPCS User Story document.
+TABLE OF CONTENTS
+Section
+Title
+1
+Introduction
+1.1
+Document Overview
+1.2
+User Needs
+2
+User Story of “Hybrid Parking Control System (HPCS)”
+2.1
+US01 – [Driver / User] Entry Vehicle Detection and Plate Capture
+2.2
+US02 – [Student Card Holder / Visitor] Prepaid Entry Payment
+2.3
+US03 – [Driver / User] Parking Card/Ticket Issuance
+2.4
+US04 – [Driver / User] Safe Entry Barrier Operation
+2.5
+US05 – [Faculty / Staff Whitelist User] Free-Access Entry via Whitelist
+2.6
+US06 – [Driver / User] Exit Validation and Plate Re-Match
+2.7
+US07 – [Driver / User] Gate Guidance through LED and Voice
+2.8
+US08 – [Admin] Secure Administrator Authentication and Authorization
+2.9
+US09 – [Admin] Whitelist and Access Policy Management
+2.10
+US10 – [Admin / Security Operator] Transaction and Gate Event Logging
+2.11
+US11 – [Admin / Security Operator] Operational Dashboard and Reports
+2.12
+US12 – [Security Staff / Operational Supervisor] Device Status Monitoring
+2.13
+US13 – [System] Encrypted Storage and Protected Access
+2.14
+US14 – [System] Performance Compliance at Gate
+2.15
+US15 – [System] Continuous Operation and LPR Accuracy
+2.16
+US16 – [System] Deny Exit on Invalid or Mismatched Data
+2.17
+US17 – [System] Multi-Gate Scalability
+2.18
+US18 – [Developer] Hardware Integration Framework
+2.19
+US19 – [Developer] Containerized Environment and Deployment
+2.20
+US20 – [System] Student ID Data Source Integration
+TABLE OF TABLES
+Table No.
+Title
+Table 1
+US01 – [Driver / User] Entry Vehicle Detection and Plate Capture
+Table 2
+US02 – [Student Card Holder / Visitor] Prepaid Entry Payment
+Table 3
+US03 – [Driver / User] Parking Card/Ticket Issuance
+Table 4
+US04 – [Driver / User] Safe Entry Barrier Operation
+Table 5
+US05 – [Faculty / Staff Whitelist User] Free-Access Entry via Whitelist
+Table 6
+US06 – [Driver / User] Exit Validation and Plate Re-Match
+Table 7
+US07 – [Driver / User] Gate Guidance through LED and Voice
+Table 8
+US08 – [Admin] Secure Administrator Authentication and Authorization
+Table 9
+US09 – [Admin] Whitelist and Access Policy Management
+Table 10
+US10 – [Admin / Security Operator] Transaction and Gate Event Logging
+Table 11
+US11 – [Admin / Security Operator] Operational Dashboard and Reports
+Table 12
+US12 – [Security Staff / Operational Supervisor] Device Status Monitoring
+Table 13
+US13 – [System] Encrypted Storage and Protected Access
+Table 14
+US14 – [System] Performance Compliance at Gate
+Table 15
+US15 – [System] Continuous Operation and LPR Accuracy
+Table 16
+US16 – [System] Deny Exit on Invalid or Mismatched Data
+Table 17
+US17 – [System] Multi-Gate Scalability
+Table 18
+US18 – [Developer] Hardware Integration Framework
+Table 19
+US19 – [Developer] Containerized Environment and Deployment
+Table 20
+US20 – [System] Student ID Data Source Integration
+1. Introduction
+HPCS is designed to reduce operating costs, congestion, human error, and fraud in campus parking by combining pay-before-entry processing, license plate recognition, automated barrier control, and supervised intervention when needed. This user story document restates the approved project scope from the perspective of the actors who interact with the system.
+1.1 Document Overview
+• Explain how drivers, faculty/staff, visitors, administrators, and supporting technical roles interact with the Hybrid Parking Control System (HPCS).
+• Translate the approved HPCS backlog into concise and testable user stories with measurable acceptance criteria where proposal thresholds are available.
+• Keep the story set aligned with the approved scope, excluding remote mobile booking, long-term AI vehicle tracking, and external parking-lot accounting.
+• Preserve traceability to Product Backlog items PB01–PB20.
+1.2 User Needs
+The HPCS user community includes several operational viewpoints, each with distinct needs at the gate and in the supporting administration workflow:
+• Drivers / Users need a fast, clear, and reliable entry and exit flow that does not require manual ticket collection at exit.
+• Student card holders need contactless entry-payment support tied to valid student credentials, while visitors still need a cash payment option.
+• Faculty and staff on the whitelist need recognized free access without losing transaction traceability.
+• Administrators and security staff need protected access to transaction logs, whitelist rules, dashboard reports, and device status information.
+• University management, IT, and finance stakeholders need secure reporting, continuity, and an architecture that can scale to multiple gates over time.
+2. User Story of “Hybrid Parking Control System (HPCS)”
+The following user stories are derived directly from the approved HPCS proposal and aligned with the Product Backlog. Each story is written to support implementation, validation, and sprint-level traceability.
+2.1 US01 – [Driver / User] Entry Vehicle Detection and Plate Capture
+Table 1. US01 – [Driver / User] Entry Vehicle Detection and Plate Capture
+Story ID
+US01
+Backlog Reference
+PB01
+Project
+HPCS
+Priority
+High
+Actor
+Driver / User
+As a/an
+Driver / User
+I want to
+the entry gate to detect my vehicle and capture my license plate automatically
+So that
+the system can begin my parking transaction without manual recording
+Acceptance criteria
+• When a vehicle stops in the designated detection area, the entry camera captures at least one usable image for processing.
+• The system stores the recognized license plate, gate identifier, and entry timestamp with the pending transaction record.
+• If recognition is uncertain or no plate is detected, the gate flow remains pending and the user receives a clear retry or assistance prompt.
+• The entry transaction is not finalized until the captured plate data is associated with the entry event.
+• Entry capture events are written to the transaction log for later audit and matching at exit.
+Story
+This story ensures that every parking transaction starts with a traceable entry event, giving HPCS the data foundation needed for payment, ticket issuance, and exit verification.
+2.2 US02 – [Student Card Holder / Visitor] Prepaid Entry Payment
+Table 2. US02 – [Student Card Holder / Visitor] Prepaid Entry Payment
+Story ID
+US02
+Backlog Reference
+PB02
+Project
+HPCS
+Priority
+High
+Actor
+Student Card Holder / Visitor
+As a/an
+Student Card Holder / Visitor
+I want to
+to complete payment at the entry gate using a student ID card (contactless) or cash
+So that
+I can pay before entering and avoid manual collection at the exit gate
+Acceptance criteria
+• The kiosk supports a contactless student ID card flow and a cash payment flow for entry payment.
+• The system records the selected payment method, transaction status, gate identifier, and timestamp for every payment attempt.
+• Entry authorization is granted only after the payment status is confirmed as successful.
+• If payment fails, times out, or is cancelled, the barrier remains closed and the user receives a clear retry or assistance message.
+• The prepaid process is designed to support the HPCS performance target in which payment confirmation and ticket issuance complete within 5 seconds under normal operation.
+Story
+This story implements the pay-before-entry model that differentiates HPCS from traditional pay-at-exit parking, helping reduce congestion and improve fee control.
+2.3 US03 – [Driver / User] Parking Card/Ticket Issuance
+Table 3. US03 – [Driver / User] Parking Card/Ticket Issuance
+Story ID
+US03
+Backlog Reference
+PB03
+Project
+HPCS
+Priority
+High
+Actor
+Driver / User
+As a/an
+Driver / User
+I want to
+to receive a parking card or ticket after valid payment or whitelist verification
+So that
+my entry transaction is linked to a credential that can be checked at exit
+Acceptance criteria
+• After successful payment or whitelist approval, the system issues one parking card or ticket for the current transaction.
+• The issued credential is linked to the transaction identifier and stored in the backend before the barrier opens.
+• No parking card or ticket is issued when payment is unconfirmed or whitelist validation fails.
+• If the dispenser or issuer reports an error, the transaction is flagged, the barrier remains closed, and the event is logged for operator review.
+• Payment confirmation and card/ticket issuance together meet the HPCS target of completion within 5 seconds under normal operation.
+Story
+This story provides the physical credential needed for controlled exit processing while keeping the entry workflow automated and auditable.
+2.4 US04 – [Driver / User] Safe Entry Barrier Operation
+Table 4. US04 – [Driver / User] Safe Entry Barrier Operation
+Story ID
+US04
+Backlog Reference
+PB04
+Project
+HPCS
+Priority
+High
+Actor
+Driver / User
+As a/an
+Driver / User
+I want to
+the entry barrier to open only after valid authorization and close safely after my vehicle passes
+So that
+the gate remains secure and traffic flow stays orderly
+Acceptance criteria
+• The barrier opens only when the system confirms a valid payment or an approved whitelist entry flow.
+• Barrier open and close commands are triggered by the authorized gate workflow and recorded in the transaction log.
+• If the transaction is invalid, incomplete, or cancelled, the barrier stays closed.
+• The barrier closes automatically after the vehicle clears the passage area or the configured gate-complete signal is received.
+• When an exception occurs, the system supports supervised control by authorized operational staff without bypassing transaction logging.
+Story
+This story turns payment and validation decisions into a safe physical gate action, which is essential for real-world control of parking access.
+2.5 US05 – [Faculty / Staff Whitelist User] Free-Access Entry via Whitelist
+Table 5. US05 – [Faculty / Staff Whitelist User] Free-Access Entry via Whitelist
+Story ID
+US05
+Backlog Reference
+PB05
+Project
+HPCS
+Priority
+Medium
+Actor
+Faculty / Staff Whitelist User
+As a/an
+Faculty / Staff Whitelist User
+I want to
+the gate to recognize my authorized free-access status
+So that
+I can enter without payment when university policy allows it
+Acceptance criteria
+• The system checks the presented vehicle or linked access credential against the maintained whitelist before asking for payment when the configured free-access policy applies.
+• An approved whitelist match bypasses the payment step and allows the normal card/ticket issuance and barrier workflow to continue.
+• A failed whitelist match returns the user to the standard prepaid entry flow instead of granting access.
+• Whitelist-based transactions are logged with a status that distinguishes them from paid entries.
+• Only eligible lecturer and administrator records maintained by authorized staff can trigger free-access treatment.
+Story
+This story supports university access policy by allowing approved internal users to use the parking service without paying while still preserving full transaction traceability.
+2.6 US06 – [Driver / User] Exit Validation and Plate Re-Match
+Table 6. US06 – [Driver / User] Exit Validation and Plate Re-Match
+Story ID
+US06
+Backlog Reference
+PB06
+Project
+HPCS
+Priority
+High
+Actor
+Driver / User
+As a/an
+Driver / User
+I want to
+to present my parking card or ticket and have my exit plate matched to the entry record
+So that
+I can leave without additional payment while the system verifies that the right vehicle is exiting
+Acceptance criteria
+• At the exit gate, the system reads the presented parking card or ticket and retrieves the related entry transaction.
+• The exit camera captures the current license plate and compares it with the plate stored at entry for the same transaction.
+• When the credential and plate match an open transaction, the system opens the exit barrier without requesting an additional payment.
+• Exit verification is completed within 3 seconds under normal operating conditions.
+• If no valid transaction is found or the exit plate does not match, the barrier remains closed and the exception is logged.
+Story
+This story completes the HPCS parking lifecycle and enforces the pay-before-entry model by validating exits through credential and plate re-matching instead of collecting fees at departure.
+2.7 US07 – [Driver / User] Gate Guidance through LED and Voice
+Table 7. US07 – [Driver / User] Gate Guidance through LED and Voice
+Story ID
+US07
+Backlog Reference
+PB07
+Project
+HPCS
+Priority
+Medium
+Actor
+Driver / User
+As a/an
+Driver / User
+I want to
+clear LED instructions and optional voice prompts while I use the gate
+So that
+I can complete the parking flow correctly without relying on staff for routine guidance
+Acceptance criteria
+• The kiosk displays step-based LED guidance for entry capture, payment, card/ticket collection, and exit validation.
+• Optional voice guidance is available for users who need audible instructions at the gate.
+• Error states, such as unreadable plate capture, failed payment, or invalid exit validation, show clear next-step guidance.
+• Operational messages are aligned with the current gate state so users are not shown contradictory instructions.
+• Guidance content supports the HPCS usability requirement and does not replace transaction or exception logging.
+Story
+This story improves usability at the gate, helping drivers complete transactions quickly and reducing the operational burden on staff.
+2.8 US08 – [Admin] Secure Administrator Authentication and Authorization
+Table 8. US08 – [Admin] Secure Administrator Authentication and Authorization
+Story ID
+US08
+Backlog Reference
+PB08
+Project
+HPCS
+Priority
+High
+Actor
+Admin
+As a/an
+Admin
+I want to
+to authenticate securely and access only the functions assigned to my role
+So that
+administrative operations and protected parking data remain secure
+Acceptance criteria
+• Only authenticated administrators can access management pages, operational dashboards, and protected system settings.
+• The authentication flow uses secure administrator credentials and supports role-based authorization for protected functions.
+• Invalid or expired credentials are rejected before any protected data is returned.
+• Administrative actions are associated with the authenticated user account for audit purposes.
+• Access to sensitive features such as whitelist maintenance, reports, and protected transaction data is blocked for unauthorized users.
+Story
+This story protects HPCS operational control surfaces so that only authorized staff can manage access rules, review data, and supervise the parking system.
+2.9 US09 – [Admin] Whitelist and Access Policy Management
+Table 9. US09 – [Admin] Whitelist and Access Policy Management
+Story ID
+US09
+Backlog Reference
+PB09
+Project
+HPCS
+Priority
+Medium
+Actor
+Admin
+As a/an
+Admin
+I want to
+to maintain whitelist entries and their free-access policy status
+So that
+the gate applies the current authorization rules for eligible users
+Acceptance criteria
+• Authorized administrators can add, update, disable, or remove whitelist records for lecturers and administrators.
+• Each whitelist entry stores the identifying information required by the configured free-access policy, such as linked vehicle or credential information where available.
+• Duplicate, incomplete, or invalid whitelist entries are rejected with a clear validation message.
+• Whitelist changes take effect in subsequent gate validation without requiring manual database edits.
+• Every whitelist change is logged with the acting administrator and timestamp.
+Story
+This story allows HPCS administrators to keep free-access policy accurate and current, ensuring that eligible users are handled correctly without weakening operational control.
+2.10 US10 – [Admin / Security Operator] Transaction and Gate Event Logging
+Table 10. US10 – [Admin / Security Operator] Transaction and Gate Event Logging
+Story ID
+US10
+Backlog Reference
+PB10
+Project
+HPCS
+Priority
+High
+Actor
+Admin / Security Operator
+As a/an
+Admin / Security Operator
+I want to
+all gate and payment events to be recorded in a complete log
+So that
+operations can be audited and exceptions can be investigated later
+Acceptance criteria
+• The system records license plate number, timestamps, payment method, transaction status, and gate information for each parking transaction.
+• Both successful and failed validation events are retained in the log so that exceptions remain traceable.
+• Log records remain accessible to authorized operational roles for audit and reporting purposes.
+• Completed log records are protected against unauthorized modification through role-based access control.
+• Logging covers entry capture, payment, credential issuance, barrier actions, exit validation, and exception outcomes.
+Story
+This story provides the audit trail that HPCS needs for security, reporting, revenue oversight, and troubleshooting of field incidents.
+2.11 US11 – [Admin / Security Operator] Operational Dashboard and Reports
+Table 11. US11 – [Admin / Security Operator] Operational Dashboard and Reports
+Story ID
+US11
+Backlog Reference
+PB11
+Project
+HPCS
+Priority
+Medium
+Actor
+Admin / Security Operator
+As a/an
+Admin / Security Operator
+I want to
+a dashboard showing operational indicators and reports
+So that
+I can monitor traffic, revenue, occupancy, and recognition performance
+Acceptance criteria
+• The dashboard displays total vehicles, revenue statistics, occupancy status, and recognition accuracy as proposed for HPCS.
+• Dashboard values are derived from stored transaction and gate event data rather than manual entry.
+• Authorized administrators and security operators can access reporting information relevant to their role.
+• Report views do not allow unauthorized users to change stored transaction data.
+• Operational summaries can distinguish paid transactions, whitelist transactions, and exception cases.
+Story
+This story turns raw transaction data into actionable operational visibility for campus parking managers and supervisors.
+2.12 US12 – [Security Staff / Operational Supervisor] Device Status Monitoring
+Table 12. US12 – [Security Staff / Operational Supervisor] Device Status Monitoring
+Story ID
+US12
+Backlog Reference
+PB12
+Project
+HPCS
+Priority
+Medium
+Actor
+Security Staff / Operational Supervisor
+As a/an
+Security Staff / Operational Supervisor
+I want to
+to monitor the condition of the gate devices used by HPCS
+So that
+I can respond quickly when hardware or communication problems occur
+Acceptance criteria
+• The monitoring view shows the latest status of the camera, barrier controller, card reader, parking card/ticket dispenser, LED or speaker unit, and cash module where installed.
+• Device communication failures or unavailable components are surfaced as visible status issues for authorized operators.
+• The monitoring view is accessible only to roles assigned operational oversight responsibilities.
+• Status updates and device-related errors are logged for later diagnosis.
+• Monitoring supports supervised control by helping staff identify which device or lane component requires intervention.
+Story
+This story helps HPCS remain practical in the field by giving operational staff clear visibility into the hardware chain behind each automated gate decision.
+2.13 US13 – [System] Encrypted Storage and Protected Access
+Table 13. US13 – [System] Encrypted Storage and Protected Access
+Story ID
+US13
+Backlog Reference
+PB13
+Project
+HPCS
+Priority
+High
+Actor
+System
+As a/an
+System
+I want to
+to encrypt protected transaction data and restrict access to stored license plate information
+So that
+sensitive payment and parking records remain secure
+Acceptance criteria
+• All stored transaction and payment data is protected using the encryption and secure storage approach defined for the implementation.
+• Access to the database or service endpoints containing license plate records is limited through role-based access control.
+• Only authenticated and authorized users can retrieve protected operational data.
+• Sensitive data is not exposed on the public-facing gate interface beyond what is required for the current step.
+• Security-relevant access attempts and protected administrative actions are logged for audit purposes.
+Story
+This story implements the core HPCS security requirement so that automation does not create unacceptable exposure of payment or vehicle identity data.
+2.14 US14 – [System] Performance Compliance at Gate
+Table 14. US14 – [System] Performance Compliance at Gate
+Story ID
+US14
+Backlog Reference
+PB14
+Project
+HPCS
+Priority
+High
+Actor
+System
+As a/an
+System
+I want to
+the main gate flows to complete within the performance targets defined for HPCS
+So that
+parking queues stay low and the user experience remains efficient
+Acceptance criteria
+• Under normal operating conditions, payment confirmation and parking card/ticket issuance complete within 5 seconds.
+• Under normal operating conditions, exit verification completes within 3 seconds.
+• Performance measurement is applied to the core entry and exit workflows rather than to isolated screen rendering alone.
+• Transactions that exceed the target thresholds can be identified through system logging for diagnostics and tuning.
+• The system maintains performance targets without bypassing required validation, security, or transaction recording steps.
+Story
+This story operationalizes the main non-functional requirement that HPCS must be fast enough to reduce congestion while still enforcing secure validation.
+2.15 US15 – [System] Continuous Operation and LPR Accuracy
+Table 15. US15 – [System] Continuous Operation and LPR Accuracy
+Story ID
+US15
+Backlog Reference
+PB15
+Project
+HPCS
+Priority
+Medium
+Actor
+System
+As a/an
+System
+I want to
+to remain available for continuous operation and recognize plates accurately in controlled conditions
+So that
+the campus can rely on HPCS during daily parking activity
+Acceptance criteria
+• The system is designed to support continuous 24/7 operation for routine campus parking use.
+• In controlled conditions, the plate recognition service targets an accuracy rate in the 90–95% range defined in the proposal.
+• When recognition confidence is insufficient, the system keeps the transaction pending instead of granting access automatically.
+• Transient hardware or communication issues do not silently discard transaction records that have already been created.
+• Operational logs provide enough context to review availability issues and recognition problems after an incident.
+Story
+This story captures the reliability expectations that make HPCS viable beyond a demonstration, especially where dependable operation and recognition quality are critical.
+2.16 US16 – [System] Deny Exit on Invalid or Mismatched Data
+Table 16. US16 – [System] Deny Exit on Invalid or Mismatched Data
+Story ID
+US16
+Backlog Reference
+PB16
+Project
+HPCS
+Priority
+High
+Actor
+System
+As a/an
+System
+I want to
+to keep the exit barrier closed when validation data is invalid or does not match
+So that
+unauthorized vehicle release is prevented
+Acceptance criteria
+• The barrier remains closed if the presented parking card or ticket cannot be read or does not map to an open transaction.
+• The barrier remains closed when the exit license plate does not match the entry plate associated with the transaction.
+• The system does not request an additional payment at exit because HPCS uses a pay-before-entry process.
+• Every denied exit event is logged with the reason for rejection and the gate identifier.
+• The gate interface gives the user a clear assistance message so that security staff can handle the exception when needed.
+Story
+This story enforces the core security check at exit, ensuring that HPCS protects against ticket misuse, incorrect vehicle release, and fraud.
+2.17 US17 – [System] Multi-Gate Scalability
+Table 17. US17 – [System] Multi-Gate Scalability
+Story ID
+US17
+Backlog Reference
+PB17
+Project
+HPCS
+Priority
+Low
+Actor
+System
+As a/an
+System
+I want to
+the architecture to support additional entry and exit gates without major redesign
+So that
+the university can expand the parking solution when needed
+Acceptance criteria
+• Transaction records include the gate identifier so multiple lanes can share a common operational data model.
+• The architecture supports adding additional entry or exit gates without rewriting the core payment, validation, and logging logic.
+• Multiple gates can work against the same transaction store while keeping transaction state consistent.
+• Reporting can distinguish activity by gate after expansion.
+• Scalability preparation does not introduce unsupported future-scope features such as remote booking or external parking-lot accounting.
+Story
+This story prepares HPCS for campus growth by making expansion feasible while staying within the currently approved project scope.
+2.18 US18 – [Developer] Hardware Integration Framework
+Table 18. US18 – [Developer] Hardware Integration Framework
+Story ID
+US18
+Backlog Reference
+PB18
+Project
+HPCS
+Priority
+High
+Actor
+Developer
+As a/an
+Developer
+I want to
+a reliable integration framework between backend services and parking hardware
+So that
+end-to-end gate automation works consistently in testing and deployment
+Acceptance criteria
+• The backend exchanges commands or events with the camera, barrier controller, card reader, card/ticket dispenser, and cash module through defined interfaces.
+• Integration logic supports the technology direction proposed for HPCS, including Python backend services and Arduino or Raspberry Pi based hardware control.
+• Hardware communication failures are detected, surfaced, and logged instead of being ignored silently.
+• Device responses are tied to the correct transaction context before the gate workflow proceeds.
+• The integration design supports incremental testing so hardware and software issues can be isolated during development.
+Story
+This story enables the software and device layers of HPCS to function as one solution instead of disconnected modules.
+2.19 US19 – [Developer] Containerized Environment and Deployment
+Table 19. US19 – [Developer] Containerized Environment and Deployment
+Story ID
+US19
+Backlog Reference
+PB19
+Project
+HPCS
+Priority
+Medium
+Actor
+Developer
+As a/an
+Developer
+I want to
+the supported services to run in a stable, containerized environment
+So that
+the team can build, test, and deploy HPCS more consistently
+Acceptance criteria
+• Core application services can be packaged and run using Docker as proposed in the project technology context.
+• Environment-specific settings are externalized so the same build can be used across development and test environments with appropriate configuration.
+• Containerized execution does not change the intended behavior of gate workflows, logging, or protected access controls.
+• Setup and run instructions are documented for the project team.
+• The deployment approach remains aligned with the approved HPCS scope and does not introduce unsupported product features.
+Story
+This story improves delivery discipline by giving the team a repeatable environment for integrating software services and hardware-facing components.
+2.20 US20 – [System] Student ID Data Source Integration
+Table 20. US20 – [System] Student ID Data Source Integration
+Story ID
+US20
+Backlog Reference
+PB20
+Project
+HPCS
+Priority
+Medium
+Actor
+System
+As a/an
+System
+I want to
+to validate contactless student card data against the university source used for card verification
+So that
+student-card-based payment or authentication can be processed correctly at the gate
+Acceptance criteria
+• The contactless student card flow validates the presented card against the configured university data source or compatible integration endpoint.
+• Only recognized and valid card data can be used to continue the card-based entry process.
+• If the external data source is unavailable or the card cannot be validated, the user receives a clear failure or fallback message and unauthorized access is not granted.
+• Card validation attempts and outcomes are logged with the related transaction context.
+• The integration follows the same protected-access principles used for other sensitive HPCS data flows.
+Story
+This story connects the HPCS entry process to the university ecosystem so that student-card-based access and payment are practical in real operation.
+
+================================================================================
+Reading: Các bước triển khai HPCS.docx
+================================================================================
+Dưới đây là bản kế hoạch A → M đầy đủ cho HPCS – Hybrid Parking Control System, theo hướng MVP-first, code-first, dùng được ngay, và đã tự điền các chỗ bạn để ... bằng giả định hợp lý để không làm tắc tiến độ.
+Giả định mặc định đang dùng cho toàn bộ kế hoạch này
+Stack: React + FastAPI + PostgreSQL + Docker
+Quản lý source/workspace: GitHub + Antigravity
+MVP: 1 entry gate + 1 exit gate
+Hardware/payment/LPR: mock/simulator trước, tích hợp thật sau
+Team: nhóm nhỏ 1–3 người, một người có thể kiêm nhiều vai
+Deadline: theo nhịp 4 tháng của proposal, nhưng ưu tiên có MVP demo sớm trong 2–4 tuần đầu
+Các fact nền của HPCS mình bám theo proposal: hệ thống tập trung vào pay-before-entry, LPR ở entry/exit, student card/contactless + cash, whitelist/free-access, ticket dispensing, barrier control, transaction logging, dashboard/reporting; ngoài scope hiện tại không làm remote mobile booking, advanced long-term AI vehicle tracking, hay external parking-lot accounting. Proposal cũng nêu các mục tiêu phi chức năng quan trọng như payment confirmation + ticket issuance trong 5 giây, exit verification không quá 3 giây, 24/7 operation, và LPR accuracy khoảng 90–95% trong controlled conditions.
+PHẦN A — Tóm tắt định hướng dự án
+1) Tóm tắt dự án trong 5–10 dòng
+HPCS là hệ thống kiểm soát bãi đỗ xe lai, kết hợp tự động hóa với giám sát con người khi cần. Mục tiêu là giảm ùn tắc, giảm sai sót/gian lận, và cải thiện trải nghiệm vào/ra bãi xe bằng cách dùng LPR, thanh toán trước khi vào, whitelist, ticket/card issuance, và điều khiển barrier. Proposal xác định rõ các vai trò liên quan gồm students, faculty/staff, visitors, university management, security team, IT department, finance department, administrators.
+2) Xác định nhanh
+Mục tiêu sản phẩm
+Tự động hóa luồng vào/ra bãi xe
+Thu tiền trước khi vào
+Đối soát biển số giữa cổng vào và cổng ra
+Hỗ trợ whitelist/free-access cho một số nhóm người dùng
+Cung cấp dashboard và log cho admin/operator
+Đối tượng người dùng
+Người lái xe tại cổng: student / faculty-staff / visitor
+Admin / operator / security staff
+Stakeholder nội bộ: management, IT, finance
+Giá trị cốt lõi
+Nhanh hơn
+Ít phụ thuộc thao tác tay
+Ít gian lận/sai sót hơn
+Dễ kiểm soát và tra soát log hơn
+Phạm vi MVP
+Admin login
+1 entry gate + 1 exit gate
+Entry flow: plate capture → whitelist check hoặc payment → issue ticket/card → open barrier
+Exit flow: read ticket/card → plate rematch → open/deny barrier
+Transaction log cơ bản
+Admin dashboard cơ bản
+Mock LPR/payment/hardware trước
+Phạm vi ngoài MVP
+Mobile booking
+Long-term AI vehicle tracking
+External parking-lot accounting
+Multi-gate real scaling
+Deep analytics nâng cao
+Production-grade HA từ ngày đầu
+3) Giả định quan trọng
+Chưa có hardware/protocol final nên sẽ mock trước
+Chưa có integration thật với student card DB nên dùng stub/mock API
+Chưa chốt payment thật nên dùng simulated flow
+Team nhỏ nên ưu tiên vertical slice trước
+4) Rủi ro sớm nhất
+LPR accuracy thấp vì ánh sáng/camera/góc chụp. Proposal cũng nêu đây là constraint môi trường quan trọng.
+Hardware integration làm trễ toàn project
+Scope creep vì dễ muốn thêm mobile app / booking / AI features ngoài MVP
+Team nhỏ nhưng phải xử lý cả software + hardware + deploy
+PHẦN B — Chia giai đoạn triển khai từ đầu tới cuối
+Tổng quan phase
+Discovery / scope freeze
+Planning / architecture / task breakdown
+Project setup / repo / workspace / dev environment
+Foundation build
+Build MVP
+Test / fix / polish
+Deploy / release
+Post-release / optimize / V1
+Phase 1 — Discovery / làm rõ yêu cầu
+Mục tiêu
+Khóa scope MVP, flow chính, out-of-scope, success metrics.
+Đầu vào cần có
+Proposal HPCS
+Một người quyết định scope
+Các giả định hiện tại
+Việc cần làm
+Viết 1 trang product brief
+Chốt in-scope / out-of-scope
+Vẽ happy path entry/exit
+Liệt kê 5 failure path chính
+Chốt “MVP là gì”
+Đầu ra
+docs/product-brief.md
+docs/mvp-scope.md
+flow diagram entry/exit
+Điều kiện hoàn thành
+Không còn tranh luận “MVP gồm gì”
+Có người chịu trách nhiệm duyệt scope
+Lỗi phổ biến cần tránh
+Viết scope quá rộng
+Trộn requirement học thuật với feature thật
+Cố đưa hardware thật vào quá sớm
+Phase 2 — Planning / kiến trúc / task breakdown
+Mục tiêu
+Chốt kiến trúc đủ dùng và breakdown task để dev bắt đầu ngay.
+Đầu vào cần có
+Scope đã freeze
+Stack mặc định
+Team capacity
+Việc cần làm
+Chốt module boundaries
+Chốt DB nháp
+Chốt API contracts
+Chia Epic > Feature > Task
+Setup ClickUp
+Chốt convention branch/commit/review
+Đầu ra
+architecture note
+ERD draft
+OpenAPI draft
+ClickUp backlog tuần 1–2
+Điều kiện hoàn thành
+Mỗi task có owner role, estimate, dependency
+Frontend/backend biết sẽ nói chuyện với nhau thế nào
+Lỗi phổ biến cần tránh
+Planning quá lâu không code
+Không định nghĩa response/error format
+Không chốt contract giữa mock và real integration
+Phase 3 — Project setup / repo / workspace / môi trường dev
+Mục tiêu
+Ai cũng clone về chạy được local.
+Đầu vào cần có
+Repo/workspace
+Stack đã chốt
+Việc cần làm
+Tạo repo + branch rules
+Init backend/frontend
+Setup Docker Compose
+Thêm lint/format/test
+Tạo .env.example
+Viết README
+Đầu ra
+repo chạy local
+/health
+CI baseline
+docs setup
+Điều kiện hoàn thành
+docker compose up chạy được
+README đủ để người khác setup
+Lỗi phổ biến cần tránh
+Setup mơ hồ
+Quên .env.example
+Quên branch protection / PR template
+Phase 4 — Foundation build
+Mục tiêu
+Dựng xương sống: DB, auth, state machine, base API, mock adapters.
+Đầu vào cần có
+Repo đã chạy local
+Scope và architecture note
+Việc cần làm
+Design schema
+Viết migrations
+JWT auth cho admin
+RBAC
+parking session state machine
+fake LPR / fake payment / fake barrier / fake ticket dispenser
+Đầu ra
+backend foundation usable
+unit test cho domain
+mock integrations
+Điều kiện hoàn thành
+Có thể gọi API và mô phỏng flow bằng fake services
+Lỗi phổ biến cần tránh
+Dồn business logic vào controller
+Không có idempotency
+Fake adapter không giống interface thật
+Phase 5 — Build MVP
+Mục tiêu
+Làm xong vertical slices quan trọng nhất.
+Đầu vào cần có
+Phase 4 ổn
+Việc cần làm
+Entry flow MVP
+Exit flow MVP
+Kiosk UI cơ bản
+Admin dashboard cơ bản
+Transaction/audit logging
+Đầu ra
+Demo được xe vào/ra end-to-end bằng simulator
+UI usable
+Điều kiện hoàn thành
+Happy path chạy được
+Các lỗi chính được handle
+Có log để debug
+Lỗi phổ biến cần tránh
+Làm dashboard đẹp trước flow core
+Không handle failure state
+Không log đủ
+Phase 6 — Test / fix / polish
+Mục tiêu
+Tăng độ ổn định để có release candidate.
+Đầu vào cần có
+MVP chạy được
+Việc cần làm
+Unit/integration/E2E tests
+Load/perf test
+Bug bash
+Polish UI
+Hardening error handling
+Monitoring/logging
+Đầu ra
+RC build
+test report
+bug list đã xử lý
+Điều kiện hoàn thành
+luồng chính không fail
+latency gần/đúng ngưỡng proposal
+có checklist UAT
+Lỗi phổ biến cần tránh
+Chỉ test happy path
+Không benchmark exit/entry latency
+Không test degraded mode
+Phase 7 — Deploy / release
+Mục tiêu
+Đưa hệ thống lên staging/pilot, có rollback.
+Đầu vào cần có
+RC build
+Env config
+Việc cần làm
+Build images
+Deploy staging
+Smoke test
+Backup/restore
+Rollback guide
+Release checklist
+Đầu ra
+staging/pilot environment
+runbook
+release notes
+Điều kiện hoàn thành
+deploy thành công
+rollback test được
+smoke test pass
+Lỗi phổ biến cần tránh
+Không migrate DB an toàn
+Không có smoke test
+Không có fallback plan
+Phase 8 — Theo dõi sau release / tối ưu / V2
+Mục tiêu
+Đo usage, fix issue, lên plan cho V1/V2.
+Đầu vào cần có
+MVP đã release
+Việc cần làm
+Theo dõi logs/alerts
+Triage bug
+Review feedback operator/admin
+Re-prioritize backlog
+Chốt V1 improvements
+Chốt phần tích hợp thật còn thiếu
+Đầu ra
+bug triage board
+post-launch report
+V1 roadmap
+Điều kiện hoàn thành
+biết rõ cái gì giữ, cái gì sửa, cái gì hoãn
+Lỗi phổ biến cần tránh
+Release xong không đo
+Không có owner cho production issue
+Fix ad-hoc không qua backlog
+PHẦN C — Chia task công việc theo ClickUp
+C1. Thiết kế cấu trúc ClickUp
+Space
+HPCS
+Folder
+Product & Planning
+Engineering
+QA & Release
+Research & Risks
+List
+00. Product & Planning
+Product Brief
+Scope & Backlog
+Architecture & ADR
+Risks & Dependencies
+01. Engineering
+Repo & Dev Setup
+Backend API
+Database
+Frontend Kiosk
+Frontend Admin
+LPR Service
+Device Integration
+DevOps / CI-CD
+02. QA & Release
+Test Cases
+Bug Triage
+UAT
+Release Checklist
+03. Research & Risks
+LPR Benchmark
+Payment/Card Integration
+Hardware Protocol Research
+Status
+Backlog
+Ready
+In Progress
+In Review
+Blocked
+Done
+Priority
+Urgent
+High
+Normal
+Low
+Tags
+mvp
+backend
+frontend
+database
+lpr
+hardware
+infra
+qa
+security
+performance
+risk
+Custom Fields
+Epic
+Feature
+Module
+Assignee Role
+Estimate (hours)
+Dependency Note
+Sprint/Week
+MVP Scope
+Risk Level
+Deliverable
+Views
+List view
+Board by Status
+Board by Module
+Timeline
+Calendar
+Docs/linked docs
+Automations
+In Review → assign TL
+Blocked > 24h → comment ping owner
+Urgent + tag bug → add vào Bug Triage
+due date overdue → notify assignee
+dependency chưa Done → warn trước khi set Done
+Template task
+Engineering task
+Research task
+Bug task
+Release task
+C2. Epic > Feature > Task > Subtask
+Epic 1 — Product & Planning
+Feature 1.1 — Scope Freeze
+Task: Viết Product Brief
+Mô tả ngắn: tóm tắt mục tiêu, user, value, MVP
+Mục tiêu: khóa hướng dự án
+Priority: High
+Estimate: 2h
+Dependency: none
+Role: PM/TL
+Acceptance criteria: có product goal, user, MVP, out-of-scope
+DoD: file docs/product-brief.md committed
+Subtask
+Viết mục tiêu sản phẩm
+Liệt kê user/stakeholders
+Viết in-scope/out-of-scope
+Chốt success criteria MVP
+Feature 1.2 — Architecture Draft
+Task: Viết architecture note v1
+Mục tiêu: chốt boundaries giữa frontend/backend/LPR/device
+Estimate: 3h
+Role: Solution Architect / TL
+Acceptance criteria: có flow entry/exit, module breakdown, envs
+DoD: file docs/architecture.md
+Epic 2 — Repo & Dev Setup
+Feature 2.1 — Git & Workspace
+Task: Tạo GitHub repo và Antigravity workspace
+Priority: High
+Estimate: 1h
+Dependency: product brief draft
+Role: TL
+AC: repo/workspace tạo xong, có README
+DoD: team truy cập được
+Feature 2.2 — Backend Bootstrap
+Task: Init FastAPI project
+Estimate: 2h
+Dependency: repo created
+Role: Backend
+AC: /health trả 200
+DoD: app chạy local
+Feature 2.3 — Frontend Bootstrap
+Task: Init React app bằng Vite
+Estimate: 2h
+Dependency: repo created
+Role: Frontend
+AC: app render trang shell
+DoD: chạy local
+Feature 2.4 — DevOps Bootstrap
+Task: Setup Docker Compose + CI baseline
+Estimate: 4h
+Dependency: backend/frontend init
+Role: DevOps/Full-stack
+AC: compose up chạy được; CI lint/build pass
+DoD: workflow chạy trên repo
+Epic 3 — Database & Domain Core
+Feature 3.1 — Database Schema
+Task: Thiết kế ERD cho HPCS
+Estimate: 4h
+Dependency: architecture v1
+Role: Backend/Architect
+AC: có các bảng chính: admins, gates, devices, whitelist, sessions, transactions, tickets, lpr_captures, gate_events, audit_logs
+DoD: ERD được review
+Feature 3.2 — Migrations
+Task: Tạo migration baseline
+Estimate: 4h
+Dependency: ERD
+Role: Backend
+AC: migrate up/down ok
+DoD: migration committed
+Feature 3.3 — Session State Machine
+Task: Implement parking session state machine
+Estimate: 6h
+Dependency: schema draft
+Role: Backend
+AC: valid/invalid transition được test
+DoD: unit tests pass
+Epic 4 — Backend Foundation
+Feature 4.1 — Auth & RBAC
+Task: Admin login bằng JWT
+Estimate: 4h
+Dependency: migration baseline
+Role: Backend
+AC: login, protected route, role guard
+DoD: OpenAPI + tests
+Feature 4.2 — Whitelist API
+Task: CRUD whitelist
+Estimate: 4h
+Dependency: auth
+Role: Backend
+AC: admin CRUD được whitelist
+DoD: APIs usable
+Feature 4.3 — Audit Logging
+Task: Middleware audit log
+Estimate: 3h
+Dependency: auth
+Role: Backend
+AC: action quản trị có log
+DoD: logs persist
+Epic 5 — Mock Adapters
+Feature 5.1 — Fake LPR
+Task: Build fake LPR provider
+Estimate: 3h
+Dependency: state machine interface
+Role: Backend/LPR
+AC: trả plate + confidence giả lập
+DoD: contract tests pass
+Feature 5.2 — Fake Payment
+Task: Build fake card/cash payment provider
+Estimate: 3h
+Dependency: state machine
+Role: Backend
+AC: success/fail/timeout path
+DoD: simulator callable
+Feature 5.3 — Fake Hardware
+Task: Build fake barrier + ticket dispenser
+Estimate: 4h
+Dependency: state machine
+Role: Backend/Device
+AC: open/close/success/jam/timed out
+DoD: logs + simulator ready
+Epic 6 — Entry Flow MVP
+Feature 6.1 — Entry Session Start
+Task: Start entry session API
+Estimate: 4h
+Dependency: state machine + fake LPR
+Role: Backend
+AC: session tạo được với gate context
+DoD: API + tests
+Feature 6.2 — Whitelist Entry
+Task: Implement whitelist pass-through flow
+Estimate: 4h
+Dependency: whitelist API + entry session
+Role: Backend
+AC: plate thuộc whitelist → issue pass/ticket → open barrier
+DoD: end-to-end demo
+Feature 6.3 — Paid Entry
+Task: Implement payment-before-entry flow
+Estimate: 6h
+Dependency: fake payment + fake hardware
+Role: Backend
+AC: payment success → ticket → barrier
+DoD: end-to-end demo
+Feature 6.4 — Entry Kiosk UI
+Task: Build entry kiosk screens
+Estimate: 6h
+Dependency: API draft
+Role: Frontend
+AC: loading/success/fail/retry screens đầy đủ
+DoD: screen flow usable
+Epic 7 — Exit Flow MVP
+Feature 7.1 — Ticket Read & Session Lookup
+Task: Exit lookup API
+Estimate: 4h
+Dependency: entry flow
+Role: Backend
+AC: ticket/card đọc vào → lấy session
+DoD: API + tests
+Feature 7.2 — Plate Rematch
+Task: Implement exit plate verification
+Estimate: 6h
+Dependency: fake LPR + exit lookup
+Role: Backend
+AC: match → allow, mismatch → deny/manual review
+DoD: tested
+Feature 7.3 — Exit Kiosk UI
+Task: Build exit kiosk screens
+Estimate: 5h
+Dependency: exit API
+Role: Frontend
+AC: success/fail/manual assist screens
+DoD: usable
+Epic 8 — Admin Dashboard
+Feature 8.1 — Admin Login UI
+Feature 8.2 — Whitelist Management UI
+Feature 8.3 — Transactions & Gate Status
+Feature 8.4 — Revenue / Occupancy Summary
+Epic 9 — Test & Release
+Feature 9.1 — Unit/Integration tests
+Feature 9.2 — E2E tests
+Feature 9.3 — Staging deploy
+Feature 9.4 — Release checklist
+C3. Bảng import ClickUp dễ copy/import
+Gợi ý: copy bảng này sang CSV/Google Sheets rồi import vào ClickUp.
+Task name
+Parent task
+Epic
+List
+Status
+Priority
+Estimate
+Assignee role
+Dependency
+Due suggestion
+Description
+Acceptance criteria
+Viết Product Brief
+Product & Planning
+Product Brief
+Ready
+High
+2h
+PM/TL
+Day 1
+Tóm tắt mục tiêu, user, MVP, out-of-scope
+Có product goal, users, MVP, out-of-scope
+Viết MVP Scope
+Product & Planning
+Scope & Backlog
+Ready
+High
+2h
+PM/TL
+Viết Product Brief
+Day 1
+Khóa in-scope/out-of-scope
+Có happy path và failure path chính
+Viết Architecture Note v1
+Product & Planning
+Architecture & ADR
+Ready
+High
+3h
+TL/Architect
+Viết MVP Scope
+Day 1
+Mô tả frontend/backend/db/lpr/device
+Có flow entry/exit và module boundaries
+Tạo GitHub repo
+Repo Setup
+Repo & Dev Setup
+Ready
+High
+1h
+TL
+Viết MVP Scope
+Day 1
+Tạo repo hpcs và README đầu tiên
+Repo truy cập được, README có
+Tạo Antigravity workspace
+Repo Setup
+Repo & Dev Setup
+Ready
+Normal
+1h
+TL
+Tạo GitHub repo
+Day 1
+Tạo workspace và rules cơ bản
+Workspace dùng được
+Init FastAPI project
+Engineering Foundation
+Backend API
+Ready
+High
+2h
+Backend
+Tạo GitHub repo
+Day 1
+Tạo backend app
+/health trả 200
+Init React app
+Engineering Foundation
+Frontend Kiosk
+Ready
+High
+2h
+Frontend
+Tạo GitHub repo
+Day 1
+Tạo frontend shell
+App render được
+Setup Docker Compose
+DevOps Baseline
+DevOps / CI-CD
+Ready
+High
+4h
+DevOps
+Init FastAPI project, Init React app
+Day 1
+Chạy local nhiều service
+docker compose up chạy được
+Setup lint/format/test baseline
+DevOps Baseline
+DevOps / CI-CD
+Ready
+High
+3h
+DevOps/Full-stack
+Init FastAPI project, Init React app
+Day 1
+Thêm lint/format/test cơ bản
+CI local pass
+Tạo .env.example
+Engineering Foundation
+Repo & Dev Setup
+Ready
+High
+1h
+Backend
+Init FastAPI project
+Day 1
+Mẫu env cho local
+Có đầy đủ biến tối thiểu
+Thiết kế ERD
+Database Core
+Database
+Ready
+High
+4h
+Backend/Architect
+Viết Architecture Note v1
+Day 2
+Vẽ schema chính
+Review ok
+Tạo migration baseline
+Database Core
+Database
+Backlog
+High
+4h
+Backend
+Thiết kế ERD
+Day 2
+Migrate database
+up/down ok
+Seed admin & whitelist sample
+Database Core
+Database
+Backlog
+Normal
+2h
+Backend
+Tạo migration baseline
+Day 2
+Dữ liệu mẫu cho dev/test
+Seed chạy được
+Implement session state machine
+Domain Core
+Backend API
+Backlog
+High
+6h
+Backend
+Thiết kế ERD
+Day 2
+Core lifecycle parking session
+Unit test pass
+Implement admin JWT login
+Backend Foundation
+Backend API
+Backlog
+High
+4h
+Backend
+Tạo migration baseline
+Day 3
+Login và protected route
+Login dùng được
+Implement RBAC guard
+Backend Foundation
+Backend API
+Backlog
+High
+3h
+Backend
+Implement admin JWT login
+Day 3
+Guard theo role
+Route bảo vệ đúng
+CRUD whitelist API
+Backend Foundation
+Backend API
+Backlog
+High
+4h
+Backend
+Implement admin JWT login
+Day 3
+Tạo API quản lý whitelist
+CRUD hoạt động
+Middleware audit log
+Backend Foundation
+Backend API
+Backlog
+Normal
+3h
+Backend
+Implement admin JWT login
+Day 3
+Log action quản trị
+Log persist đúng
+Build fake LPR provider
+Mock Adapters
+LPR Service
+Backlog
+High
+3h
+LPR/Backend
+Implement session state machine
+Day 3
+Fake nhận diện biển số
+Contract test pass
+Build fake payment provider
+Mock Adapters
+Backend API
+Backlog
+High
+3h
+Backend
+Implement session state machine
+Day 3
+Fake card/cash payment
+success/fail/timeout có
+Build fake barrier/dispenser
+Mock Adapters
+Device Integration
+Backlog
+High
+4h
+Device/Backend
+Implement session state machine
+Day 4
+Fake hardware events
+Simulator dùng được
+Start entry session API
+Entry MVP
+Backend API
+Backlog
+High
+4h
+Backend
+State machine, fake LPR
+Day 4
+Tạo entry session
+API + tests
+Implement whitelist entry flow
+Entry MVP
+Backend API
+Backlog
+High
+4h
+Backend
+Start entry session API, CRUD whitelist API, fake hardware
+Day 4
+Flow xe whitelist vào cổng
+E2E demo được
+Implement paid entry flow
+Entry MVP
+Backend API
+Backlog
+High
+6h
+Backend
+Start entry session API, fake payment, fake hardware
+Day 5
+Flow thanh toán trước khi vào
+E2E demo được
+Build entry kiosk UI
+Entry MVP
+Frontend Kiosk
+Backlog
+High
+6h
+Frontend
+Start entry session API
+Day 5
+UI entry flow
+loading/success/fail/retry có
+Exit lookup API
+Exit MVP
+Backend API
+Backlog
+High
+4h
+Backend
+Entry MVP
+Week 2 Day 1
+Đọc ticket/card và lookup session
+API đúng
+Implement exit plate rematch
+Exit MVP
+Backend API
+Backlog
+High
+6h
+Backend
+Exit lookup API, fake LPR
+Week 2 Day 1
+Verify biển số khi ra
+match/deny hoạt động
+Build exit kiosk UI
+Exit MVP
+Frontend Kiosk
+Backlog
+Normal
+5h
+Frontend
+Exit lookup API
+Week 2 Day 2
+UI exit flow
+usable
+Build admin login UI
+Admin Dashboard
+Frontend Admin
+Backlog
+Normal
+3h
+Frontend
+Implement admin JWT login
+Week 2 Day 2
+Màn login admin
+usable
+Build whitelist management UI
+Admin Dashboard
+Frontend Admin
+Backlog
+Normal
+5h
+Frontend
+CRUD whitelist API
+Week 2 Day 2
+Quản lý whitelist
+create/edit/delete ok
+Build transaction list UI
+Admin Dashboard
+Frontend Admin
+Backlog
+Normal
+5h
+Frontend
+Entry/Exit MVP
+Week 2 Day 3
+Danh sách transaction
+filter cơ bản
+Add unit tests domain
+QA Baseline
+Test Cases
+Backlog
+High
+4h
+Backend
+State machine
+Week 2 Day 3
+Test domain logic
+pass
+Add integration tests APIs
+QA Baseline
+Test Cases
+Backlog
+High
+5h
+Backend/QA
+Entry/Exit MVP
+Week 2 Day 4
+Test flow APIs
+pass
+Setup staging deploy
+Release Baseline
+DevOps / CI-CD
+Backlog
+Normal
+5h
+DevOps
+MVP flows
+Week 2 Day 5
+Deploy staging
+smoke test ok
+Create release checklist
+Release Baseline
+Release Checklist
+Backlog
+Normal
+2h
+TL/QA
+MVP flows
+Week 2 Day 5
+Checklist release MVP
+doc hoàn chỉnh
+PHẦN D — Bắt đầu dự án từ đầu
+D1. Tạo project / workspace
+Nếu dùng GitHub
+Tên repo đề xuất
+hpcsThay thế: hybrid-parking-control-system
+Mô tả repo
+Hybrid Parking Control System (HPCS) - MVP for prepaid parking entry, LPR verification, whitelist, ticketing, barrier control, and admin dashboard.
+Cấu trúc branch
+main — ổn định
+develop — tích hợp hằng ngày
+feature/*
+fix/*
+hotfix/*
+release/*
+Convention đặt tên branch
+feature/entry-flow-mvp
+feature/admin-whitelist-crud
+fix/exit-rematch-timeout
+hotfix/prod-barrier-retry
+Quy tắc commit
+Dùng Conventional Commits:
+feat: add entry session api
+fix: handle barrier timeout gracefully
+docs: add architecture note
+chore: setup docker compose
+Issue labels
+type:feature
+type:bug
+type:docs
+type:infra
+area:backend
+area:frontend
+area:database
+area:lpr
+area:device
+priority:high
+status:blocked
+Issue template
+Feature request
+Bug report
+Technical spike
+Pull request template
+Summary
+Scope
+Screenshots / artifacts
+Test done
+Risk
+Checklist
+Branch protection
+Không push trực tiếp vào main
+Require PR review
+Require CI pass
+Require up-to-date branch trước merge
+Release strategy
+MVP: tag v0.1.0
+RC: v0.1.0-rc1
+Sau đó semantic versioning
+Nếu dùng Antigravity
+Cách tạo workspace
+Tạo workspace HPCS rồi chia theo workstream:
+hpcs-backend
+hpcs-frontend-kiosk
+hpcs-frontend-admin
+hpcs-lpr
+hpcs-device
+hpcs-docs-planning
+Rules cần tạo cho workspace
+Không mở rộng scope ngoài MVP nếu chưa có task
+Mỗi task phải trả về artifact: code diff, test result, screenshot, doc
+Không merge code nếu chưa có acceptance criteria mapping
+Ưu tiên mock-first nếu dependency ngoài chưa sẵn sàng
+Workflow/prompt templates nên lưu sẵn
+Implement feature from acceptance criteria
+Refactor without changing behavior
+Write contract tests for adapter
+Review PR and produce risk notes
+Generate task breakdown from architecture note
+Cách chia agent/task
+Agent A: backend core
+Agent B: frontend kiosk
+Agent C: frontend admin
+Agent D: LPR/device research
+Agent E: QA/test docs
+Cách quản lý review
+Agent làm xong phải trả:
+changed files
+how to run
+tests executed
+edge cases handled
+known limitations
+Nếu dùng cả GitHub + Antigravity
+Vai trò của từng cái
+GitHub: source of truth cho code, PR, release
+Antigravity: breakdown task, agent execution, artifact review, coding acceleration
+Quy trình phối hợp
+ClickUp tạo task
+Antigravity tạo plan/agent workspace cho task
+Agent code trong workspace
+PR đưa về GitHub
+Review + CI + merge trên GitHub
+ClickUp update status
+Mặc định tốt nhất: dùng cả GitHub + Antigravity.Trade-off: setup nhiều hơn một chút, nhưng rõ source-of-truth và dễ scale task.
+D2. Tạo file và cấu trúc thư mục dự án
+File tree tối thiểu và thực tế
+hpcs/
+├─ README.md
+├─ .gitignore
+├─ .env.example
+├─ LICENSE
+├─ CHANGELOG.md
+├─ CONTRIBUTING.md
+├─ docker-compose.yml
+├─ .github/
+│  ├─ ISSUE_TEMPLATE/
+│  │  ├─ bug_report.md
+│  │  ├─ feature_request.md
+│  │  └─ technical_spike.md
+│  ├─ pull_request_template.md
+│  └─ workflows/
+│     ├─ backend-ci.yml
+│     └─ frontend-ci.yml
+├─ docs/
+│  ├─ product-brief.md
+│  ├─ mvp-scope.md
+│  ├─ architecture.md
+│  ├─ api-spec.md
+│  ├─ erd.md
+│  ├─ release-checklist.md
+│  └─ runbook.md
+├─ backend/
+│  ├─ app/
+│  │  ├─ api/
+│  │  ├─ core/
+│  │  ├─ domain/
+│  │  ├─ services/
+│  │  ├─ models/
+│  │  ├─ repositories/
+│  │  ├─ schemas/
+│  │  └─ main.py
+│  ├─ tests/
+│  ├─ alembic/
+│  ├─ requirements.txt
+│  └─ Dockerfile
+├─ frontend/
+│  ├─ src/
+│  │  ├─ app/
+│  │  ├─ pages/
+│  │  ├─ components/
+│  │  ├─ features/
+│  │  ├─ services/
+│  │  ├─ hooks/
+│  │  ├─ lib/
+│  │  └─ main.tsx
+│  ├─ public/
+│  ├─ tests/
+│  ├─ package.json
+│  └─ Dockerfile
+├─ services/
+│  ├─ lpr/
+│  │  ├─ app/
+│  │  ├─ tests/
+│  │  ├─ requirements.txt
+│  │  └─ Dockerfile
+│  └─ device-sim/
+│     ├─ simulator.py
+│     └─ Dockerfile
+├─ scripts/
+│  ├─ seed_db.py
+│  ├─ dev_up.sh
+│  └─ smoke_test.sh
+└─ assets/
+   └─ diagrams/
+File bắt buộc phải có ngay
+README.md
+.gitignore
+.env.example
+docker-compose.yml
+docs/mvp-scope.md
+docs/architecture.md
+File có thể thêm sau
+LICENSE
+CHANGELOG.md
+runbook.md
+api-spec.md chi tiết
+release-checklist.md
+D3. Hướng dẫn command/các bước tạo dự án
+Stack mặc định cuối cùng
+Frontend: React + Vite + TypeScriptBackend: FastAPIDatabase: PostgreSQLInfra local: Docker ComposeLPR: Python service riêng
+Commands khởi tạo project
+1) Tạo repo local
+mkdir hpcs
+cd hpcs
+git init
+git checkout -b develop
+2) Tạo cấu trúc thư mục
+mkdir -p docs backend frontend services/lpr services/device-sim scripts assets .github/workflows .github/ISSUE_TEMPLATE
+3) Init frontend
+npm create vite@latest frontend -- --template react-ts
+cd frontend
+npm install
+npm install -D eslint prettier
+cd ..
+4) Init backend FastAPI
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install fastapi uvicorn sqlalchemy alembic psycopg2-binary pydantic python-jose passlib[bcrypt] pytest httpx
+pip freeze > requirements.txt
+mkdir -p app/api app/core app/domain app/services app/models app/repositories app/schemas tests
+touch app/main.py
+cd ..
+5) Init LPR service
+cd services/lpr
+python -m venv .venv
+source .venv/bin/activate
+pip install fastapi uvicorn opencv-python pytesseract pytest
+pip freeze > requirements.txt
+mkdir -p app tests
+touch app/main.py
+cd ../..
+6) Tạo .env.example
+cat > .env.example <<'EOF'
+POSTGRES_DB=hpcs
+POSTGRES_USER=hpcs_user
+POSTGRES_PASSWORD=hpcs_pass
+POSTGRES_PORT=5432
+BACKEND_PORT=8000
+FRONTEND_PORT=5173
+LPR_PORT=8010
+JWT_SECRET=change_me
+JWT_ALGORITHM=HS256
+APP_ENV=development
+USE_FAKE_LPR=true
+USE_FAKE_PAYMENT=true
+USE_FAKE_DEVICE=true
+EOF
+7) Tạo docker-compose.yml
+cat > docker-compose.yml <<'EOF'
+version: "3.9"
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: hpcs
+      POSTGRES_USER: hpcs_user
+      POSTGRES_PASSWORD: hpcs_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
+EOF
+8) Tạo backend main.py
+cat > backend/app/main.py <<'EOF'
+from fastapi import FastAPI
+app = FastAPI(title="HPCS API")
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+EOF
+9) Chạy backend local
+cd backend
+source .venv/bin/activate
+uvicorn app.main:app --reload --port 8000
+10) Chạy frontend local
+cd frontend
+npm run dev
+11) Chạy Postgres
+docker compose up -d
+12) Tạo branch đầu tiên
+git checkout -b feature/bootstrap-project
+13) Push code đầu tiên
+git add .
+git commit -m "chore: bootstrap hpcs project structure"
+git remote add origin <YOUR_GITHUB_REPO_URL>
+git push -u origin feature/bootstrap-project
+14) Setup lint/format/test cơ bản
+Frontend
+cd frontend
+npm install -D eslint prettier vitest @testing-library/react @testing-library/jest-dom
+cd ..
+Backend
+cd backend
+source .venv/bin/activate
+pip install black ruff pytest
+pip freeze > requirements.txt
+cd ..
+D4. Tạo nội dung mẫu cho các file quan trọng
+README.md
+# HPCS - Hybrid Parking Control System
+HPCS is an MVP parking control platform focused on prepaid entry, license plate recognition, whitelist validation, ticket/card issuance, barrier control, and transaction logging.
+## MVP Scope
+- Admin authentication
+- Entry gate flow
+- Exit gate flow
+- Whitelist management
+- Basic admin dashboard
+- Mock LPR / payment / hardware adapters
+## Tech Stack
+- Frontend: React + Vite + TypeScript
+- Backend: FastAPI
+- Database: PostgreSQL
+- Local infra: Docker Compose
+## Getting Started
+1. Copy `.env.example` to `.env`
+2. Run `docker compose up -d`
+3. Start backend
+4. Start frontend
+## Project Structure
+- `backend/` API and domain logic
+- `frontend/` kiosk/admin UI
+- `services/lpr/` LPR service
+- `docs/` product and architecture docs
+.env.example
+POSTGRES_DB=hpcs
+POSTGRES_USER=hpcs_user
+POSTGRES_PASSWORD=hpcs_pass
+POSTGRES_PORT=5432
+BACKEND_PORT=8000
+FRONTEND_PORT=5173
+LPR_PORT=8010
+JWT_SECRET=change_me
+JWT_ALGORITHM=HS256
+APP_ENV=development
+USE_FAKE_LPR=true
+USE_FAKE_PAYMENT=true
+USE_FAKE_DEVICE=true
+Issue template — feature
+---
+name: Feature request
+about: Add a new feature/task
+title: "[Feature] "
+labels: ["type:feature"]
+---
+## Summary
+Describe the feature briefly.
+## Goal
+What business or technical goal does this support?
+## Scope
+What is included?
+## Out of scope
+What is not included?
+## Acceptance Criteria
+- [ ]
+## Dependencies
+List blockers or related tasks.
+## Risks
+List key risks if any.
+PR template
+## Summary
+What does this PR change?
+## Scope
+- Included:
+- Not included:
+## Screenshots / Artifacts
+Attach screenshots, logs, or demo notes if available.
+## Testing
+- [ ] Unit tests
+- [ ] Manual test
+- [ ] Integration test
+- [ ] Not applicable
+## Risks
+What could break?
+## Checklist
+- [ ] Code follows conventions
+- [ ] Acceptance criteria addressed
+- [ ] Docs updated if needed
+- [ ] No obvious scope creep
+CONTRIBUTING.md
+# Contributing
+## Branches
+- `main`: stable
+- `develop`: integration
+- `feature/*`: new features
+- `fix/*`: bug fixes
+## Commit format
+Use Conventional Commits:
+- feat:
+- fix:
+- docs:
+- chore:
+- refactor:
+- test:
+## Pull Requests
+- Small, focused PRs
+- Include testing notes
+- Include screenshots/artifacts if relevant
+- Reference ClickUp/GitHub issue
+## Review rules
+- No direct push to `main`
+- CI should pass before merge
+CHANGELOG.md
+# Changelog
+## [Unreleased]
+## [0.1.0] - MVP bootstrap
+### Added
+- Initial repo structure
+- Backend and frontend bootstrap
+- Docker Compose baseline
+docs/architecture.md
+# HPCS Architecture Note v1
+## Core Modules
+- Frontend Kiosk
+- Frontend Admin
+- Backend API
+- PostgreSQL
+- LPR Service
+- Device Adapter Layer
+## Entry Flow
+1. Vehicle detected
+2. Plate captured
+3. Whitelist check
+4. Payment if needed
+5. Ticket/card issued
+6. Barrier opens
+7. Logs stored
+## Exit Flow
+1. Ticket/card read
+2. Session lookup
+3. Exit plate captured
+4. Plate rematch
+5. Barrier opens or denies
+6. Session closed
+## Design Rule
+Use mock adapters first, then replace with real integrations via interfaces.
+PHẦN E — Hướng dẫn build gì trước
+Thứ tự build thực tế
+1. Setup nền tảng
+Tại sao trước
+Không có nền thì mọi task sau đều block.
+Đầu vào
+Stack đã chốt, repo đã tạo.
+Đầu ra
+Repo chạy được local.
+Checklist
+init backend
+init frontend
+docker compose
+README
+.env.example
+CI baseline
+Lỗi phổ biến
+setup quá lâu
+không có hướng dẫn chạy local
+Dấu hiệu sẵn sàng qua bước sau
+/health ok
+frontend shell render được
+2. Cấu trúc app & docs lõi
+Tại sao trước
+Để tránh code lộn xộn và sai scope.
+Đầu vào
+repo bootstrap
+Đầu ra
+architecture note
+mvp scope
+module tree
+Checklist
+docs
+boundaries
+response format
+error format
+Lỗi phổ biến
+không tách domain/service/api
+không ghi out-of-scope
+Sẵn sàng khi
+team/agent biết code chỗ nào
+3. Database/schema
+Tại sao trước
+Flow entry/exit phụ thuộc state và log rất nhiều.
+Đầu vào
+architecture note
+Đầu ra
+ERD + migrations
+Checklist
+sessions
+transactions
+tickets
+whitelist
+lpr captures
+gate events
+audit logs
+Lỗi phổ biến
+quên audit/trace tables
+không nghĩ đến exit flow ngay từ đầu
+Sẵn sàng khi
+migrate/seed được
+4. Auth
+Tại sao trước
+Admin dashboard và APIs quản trị cần auth sớm.
+Đầu vào
+DB baseline
+Đầu ra
+JWT auth + RBAC
+Checklist
+login
+protected routes
+role guards
+Lỗi phổ biến
+làm user auth cho gate user dù không cần
+quên audit admin actions
+Sẵn sàng khi
+admin login được, protected API chạy
+5. Core domain logic
+Tại sao trước
+State machine quyết định đúng/sai của cả hệ thống.
+Đầu vào
+schema
+Đầu ra
+parking session state machine
+Checklist
+start entry
+whitelist approved
+payment success
+ticket issued
+entry granted
+exit verified
+closed
+failed
+Lỗi phổ biến
+dồn logic vào controller
+không có invalid transition guard
+Sẵn sàng khi
+unit tests pass
+6. Mock integrations
+Tại sao trước
+Unblock frontend/backend trước hardware thật.
+Đầu vào
+state machine
+Đầu ra
+fake LPR/payment/device
+Checklist
+success/fail/timeout
+contract tests
+config flag
+Lỗi phổ biến
+fake interface khác real interface
+Sẵn sàng khi
+API dùng mock flow được
+7. Core feature số 1 — Entry flow
+Tại sao trước
+Đây là core business value lớn nhất của HPCS.
+Đầu vào
+auth, state machine, mocks
+Đầu ra
+entry end-to-end
+Checklist
+capture plate
+whitelist check
+payment
+ticket
+barrier
+logs
+Lỗi phổ biến
+không handle payment fail
+barrier mở trước khi ticket confirm
+Sẵn sàng khi
+demo được happy path và 2 failure path
+8. Core feature số 2 — Exit flow
+Tại sao sau entry
+Exit phụ thuộc session/ticket từ entry.
+Đầu vào
+entry flow
+Đầu ra
+exit end-to-end
+Checklist
+read ticket
+session lookup
+exit plate
+rematch
+allow/deny
+close session
+Lỗi phổ biến
+normalize biển số không nhất quán
+mismatch không có manual assist path
+Sẵn sàng khi
+deny correctly khi mismatch
+9. Admin/backoffice
+Tại sao sau core flow
+Dashboard không đáng ưu tiên hơn entry/exit.
+Đầu vào
+backend APIs
+Đầu ra
+login, whitelist CRUD, transaction list, gate status
+Checklist
+admin login
+whitelist UI
+transactions UI
+gate/device basic status
+Lỗi phổ biến
+build dashboard quá nặng
+thiếu actions thực dụng cho operator
+Sẵn sàng khi
+admin dùng được cho demo/UAT
+10. Integrations thật
+Tại sao sau mock
+Để thay thế từng phần có kiểm soát.
+Đầu vào
+mock flow stable
+Đầu ra
+LPR/device/payment thật hoặc semi-real
+Checklist
+adapter interfaces
+timeout/retry
+degraded mode
+Lỗi phổ biến
+integrate trực tiếp không qua adapter
+không có fallback
+Sẵn sàng khi
+staging chạy với real integration tối thiểu
+11. Analytics/logging
+Tại sao gần cuối MVP
+Cần có nhưng không được chặn flow core.
+Đầu vào
+core flows
+Đầu ra
+structured logs, metrics, basic analytics
+Checklist
+correlation ID
+gate events
+latency metrics
+error logs
+Lỗi phổ biến
+không đo latency
+log thiếu context
+Sẵn sàng khi
+debug production-like issue được
+12. Testing
+Tại sao
+Chốt chất lượng trước deploy.
+Đầu vào
+MVP stable
+Đầu ra
+test report
+Checklist
+unit
+integration
+e2e
+manual UAT
+Lỗi phổ biến
+chỉ test happy path
+Sẵn sàng khi
+regression checklist pass
+13. Deploy
+Tại sao
+Đưa lên staging/pilot.
+Đầu vào
+RC build
+Đầu ra
+staging/prod
+Checklist
+deploy script
+env
+smoke test
+rollback
+Lỗi phổ biến
+quên migration/backup
+Sẵn sàng khi
+smoke test pass sau deploy
+14. Monitoring
+Tại sao
+Release xong phải quan sát được.
+Đầu vào
+deployed environment
+Đầu ra
+alerts + runbook
+Checklist
+service health
+device status
+payment fail alerts
+LPR confidence alerts
+Lỗi phổ biến
+release xong không theo dõi
+Sẵn sàng khi
+team biết xử lý issue thật
+PHẦN F — Kiến trúc và nền tảng kỹ thuật
+MVP architecture
+Frontend structure
+frontend/src/app — routing/app shell
+frontend/src/features/kiosk-entry
+frontend/src/features/kiosk-exit
+frontend/src/features/admin-auth
+frontend/src/features/whitelist
+frontend/src/features/transactions
+frontend/src/services/api.ts
+Backend/API structure
+api/ — routes/controllers
+core/ — config, security, errors
+domain/ — entities + state machine
+services/ — use cases
+repositories/ — DB access
+schemas/ — request/response
+models/ — ORM models
+Database model sơ bộ
+admin_users
+roles
+gates
+devices
+whitelist
+parking_sessions
+transactions
+payment_attempts
+tickets
+lpr_captures
+gate_events
+audit_logs
+Auth flow
+Admin login với JWT
+Role guard cho admin/operator/security
+Gate user không login kiểu app thường; họ đi qua kiosk flow
+State management
+Frontend: React Query + local component state
+Không cần Redux ngay từ đầu
+File upload/media
+MVP: chưa cần upload phức tạp
+LPR captures có thể lưu file local/stub path
+V1 có thể chuyển object storage
+Logging/error handling
+Structured logs JSON
+correlation/request ID
+error codes thống nhất
+Configuration/env strategy
+.env theo từng môi trường
+service flags:
+USE_FAKE_LPR
+USE_FAKE_PAYMENT
+USE_FAKE_DEVICE
+Security cơ bản
+JWT secret từ env
+password hash bcrypt
+RBAC
+input validation
+rate limit login
+không hardcode secret
+Backup / migration / secret management
+Alembic migrations
+DB backup script
+secret qua env/secret manager khi deploy
+Scalable architecture (sau MVP)
+Tách LPR service thành service riêng
+Tách device bridge thành process/service riêng
+Message queue/event bus khi multi-gate tăng lên
+Object storage cho images
+Metrics/alerts tốt hơn
+staging/prod riêng hoàn chỉnh
+PHẦN G — Kế hoạch theo thời gian
+Trong 2 giờ đầu
+Mục tiêu
+Khởi động project đúng hướng.
+Đầu ra
+scope doc
+ClickUp structure
+repo/workspace
+skeleton project
+Chỉ số đo tiến độ
+có repo
+có /health
+có board task
+Trong ngày 1
+Mục tiêu
+Có nền để ngày 2 bắt đầu code feature.
+Đầu ra
+product brief
+mvp scope
+architecture note
+repo bootstrap
+frontend/backend local chạy
+ClickUp backlog tuần 1
+Chỉ số
+10 task Ready
+repo push đầu tiên
+CI/lint baseline có
+Trong 3 ngày đầu
+Mục tiêu
+Chốt foundation.
+Đầu ra
+ERD
+migration baseline
+auth admin
+state machine
+fake adapters cơ bản
+Chỉ số
+unit tests domain đầu tiên pass
+whitelist CRUD API có
+fake LPR/payment/device chạy
+Trong tuần 1
+Mục tiêu
+Demo được entry flow MVP bằng simulator.
+Đầu ra
+entry session
+whitelist path
+paid entry path
+entry kiosk basic UI
+Chỉ số
+happy path entry chạy end-to-end
+2–3 failure path chạy đúng
+transaction log ghi được
+Mốc milestone từ tuần 2 trở đi
+Tuần 2
+exit flow MVP
+admin dashboard cơ bản
+integration tests đầu tiên
+staging skeleton
+Tuần 3
+polish entry/exit
+logging/observability
+real integration spikes
+bug bash
+Tuần 4
+RC build
+staging demo
+UAT nội bộ
+release MVP
+Release plan cho MVP
+Mốc release: cuối tuần 4
+Có thể lùi integration thật sang sau nếu logic core đã demo tốt
+PHẦN H — [Bổ sung] Những phần dễ quên nhưng phải có
+[Bổ sung] Scope in/out
+Đã chốt:
+In: entry/exit automation, whitelist, payment-before-entry, ticket, barrier, logs, dashboard
+Out: mobile booking, long-term AI tracking, external accounting
+[Bổ sung] Tiêu chí hoàn thành từng task
+Mỗi task phải có:
+artifact cụ thể
+acceptance criteria
+test note
+definition of done
+không chỉ “đã code”
+[Bổ sung] Stakeholder hoặc người review
+TL/PM: review scope, architecture
+Backend reviewer: API/domain
+Frontend reviewer: kiosk/admin UX
+Operator/mentor: UAT
+[Bổ sung] Dependency bên ngoài
+camera/hardware availability
+protocol barrier/dispenser
+student card DB/access
+môi trường deploy
+[Bổ sung] Risk register
+Risk
+Mức độ
+Cách giảm
+LPR accuracy thấp
+High
+dùng mock trước, benchmark sớm
+Hardware không ổn định
+High
+adapter + simulator + timeout
+Scope creep
+High
+freeze MVP + review every week
+Team thiếu người
+Medium
+vertical slice + ưu tiên core flow
+Deploy chậm
+Medium
+staging sớm + docker hóa
+[Bổ sung] Test plan
+Có ở phần I, nhưng cần tạo list riêng trong ClickUp từ đầu.
+[Bổ sung] Staging/prod environment
+Local
+Staging
+Production/pilot
+[Bổ sung] CI/CD cơ bản
+frontend CI
+backend CI
+build images sau này
+[Bổ sung] Monitoring / alert / log
+health checks
+device fail alerts
+LPR low confidence alerts
+payment fail ratio
+[Bổ sung] Analytics
+MVP chỉ cần:
+số xe vào/ra
+payment success/fail
+whitelist usage
+average entry/exit latency
+[Bổ sung] Backup / rollback plan
+backup DB trước deploy
+rollback app version
+smoke test sau deploy
+[Bổ sung] Tài liệu onboarding
+setup guide
+architecture note
+branch/PR rules
+[Bổ sung] Release checklist
+CI pass
+migrations ok
+smoke test ok
+rollback script ok
+changelog/release note updated
+[Bổ sung] Post-launch checklist
+check logs 1h đầu
+test entry/exit thật
+check alerts
+triage lỗi đầu tiên
+[Bổ sung] Bug triage / support process
+severity P1/P2/P3
+ai nhận issue
+cách escalate
+rule hotfix
+PHẦN I — Quality Assurance / Test plan
+Mức test phù hợp với MVP
+1. Manual test
+Làm trước
+happy path entry
+happy path exit
+whitelist path
+payment fail
+ticket invalid
+plate mismatch
+2. Unit test
+Ưu tiên sớm
+state machine
+transition rules
+plate normalization
+payment status logic
+3. Integration test
+Làm sau unit
+auth API
+whitelist CRUD
+entry flow với fake adapters
+exit flow với fake adapters
+4. E2E test
+Để sau khi UI ổn
+kiosk entry
+kiosk exit
+admin login + whitelist CRUD
+5. UAT
+operator chạy entry/exit theo checklist
+admin xem transaction/whitelist
+6. Regression checklist
+login còn hoạt động
+entry happy path còn chạy
+exit happy path còn chạy
+whitelist flow còn đúng
+logs vẫn có
+dashboard không vỡ route
+Test gì trước, test gì để sau
+Làm trước
+unit test domain/state machine
+integration test backend
+manual happy path
+Để sau
+e2e đầy đủ
+performance/load tests nâng cao
+hardware-in-loop sâu
+Coverage tối thiểu thực tế cho MVP
+Domain core: 70%+
+Backend tổng thể: 40–50%+
+Frontend: test screen critical, không cần coverage quá cao ban đầu
+1–2 E2E flows là đủ cho MVP
+PHẦN J — Deploy / Release / Vận hành
+Nên deploy ở đâu trước
+Mặc định tốt nhất
+Staging trên VPS hoặc một máy nội bộ đơn giản
+local trước, staging sau, production/pilot cuối
+Phương án thay thế
+AWS/GCP ngay từ đầuTrade-off: mạnh hơn nhưng tốn thời gian setup hơn
+Môi trường
+Local: dev hàng ngày
+Staging: demo/UAT
+Production/Pilot: release thật
+Cách chuẩn bị env
+.env.local
+.env.staging
+.env.production
+secrets không commit
+Cách release MVP
+đóng feature freeze
+chạy CI
+migrate DB trên staging
+smoke test
+tag release
+release notes
+monitor sau deploy
+Cách rollback nếu lỗi
+rollback app image/version
+restore DB nếu migration phá dữ liệu
+fallback dùng simulator nếu integration thật lỗi
+Những gì cần kiểm tra sau deploy
+/health
+login admin
+entry flow
+exit flow
+logs đang ghi
+DB connection ổn
+device status/lpr service status
+PHẦN K — Tài liệu dự án
+Tài liệu nên có
+Tài liệu
+Viết ngay hay sau
+Product brief
+Ngay
+MVP scope
+Ngay
+Backlog
+Ngay
+Architecture note
+Ngay
+Setup guide
+Ngay
+API spec
+Sớm, sau bootstrap
+ERD
+Sớm
+Release checklist
+Trước release
+Changelog
+Ngay, nhưng ngắn
+Known issues
+Sau khi có RC
+Handover note
+Cuối dự án
+Runbook
+Trước pilot/release
+Cái phải viết ngay
+product brief
+mvp scope
+architecture note
+setup guide
+backlog tuần 1–2
+Cái viết sau
+full API spec
+runbook chi tiết
+handover note
+PHẦN L — Theo dõi tiến độ và báo cáo
+Update gì trong ClickUp mỗi ngày
+task status
+blocker
+estimate còn lại
+artifact đã có gì
+next step
+Báo cáo progress hằng tuần
+Done tuần này
+Blockers
+Risk mới
+Plan tuần tới
+Có cần re-prioritize không
+Khi nào cần re-prioritize
+dependency ngoài bị trễ
+hardware chưa sẵn sàng
+deadline gần mà core flow chưa xong
+task nào không phục vụ MVP nữa
+Cách biết dự án đang chậm tiến độ
+cuối tuần 1 chưa demo được entry mock
+cuối tuần 2 chưa demo được exit mock
+task Blocked > 20% tổng task active
+test/bug fix dồn quá nhiều ở tuần cuối
+PHẦN M — Hành động ngay bây giờ
+1. 10 việc cần làm NGAY BÂY GIỜ theo đúng thứ tự
+Tạo docs/product-brief.md
+Tạo docs/mvp-scope.md
+Tạo ClickUp Space + Folder + List + Status
+Tạo repo hpcs
+Tạo Antigravity workspace theo module
+Init backend FastAPI
+Init frontend React
+Setup Docker Compose + .env.example
+Viết docs/architecture.md
+Tạo backlog tuần 1 trong ClickUp
+2. Những thứ bạn chưa cung cấp nhưng rất quan trọng
+có hardware thật chưa
+protocol barrier/dispenser có chưa
+deploy ở đâu
+team size / role cụ thể
+deadline demo thật
+payment/student card integration có thật hay giả lập
+3. Checklist ngắn gọn để copy vào ClickUp hoặc Notion
+[ ] Viết Product Brief
+[ ] Viết MVP Scope
+[ ] Tạo ClickUp Space HPCS
+[ ] Tạo repo GitHub
+[ ] Tạo Antigravity workspace
+[ ] Init backend FastAPI
+[ ] Init frontend React
+[ ] Setup Docker Compose
+[ ] Tạo .env.example
+[ ] Viết architecture note
+[ ] Thiết kế ERD
+[ ] Tạo migration baseline
+[ ] Implement admin auth
+[ ] Implement session state machine
+[ ] Build fake LPR/payment/device
+[ ] Build entry flow MVP
+[ ] Build exit flow MVP
+[ ] Build admin dashboard basic
+[ ] Add tests
+[ ] Setup staging
+4. Next prompt để tiếp tục không mất ngữ cảnh
+Tiếp tục với HPCS.
+Hãy làm giúp tôi 4 việc sau, bám theo kế hoạch đã chốt:
+1. Tạo backlog chi tiết cho tuần 1 và tuần 2 theo format ClickUp task/subtask
+2. Viết nội dung hoàn chỉnh cho:
+   - docs/product-brief.md
+   - docs/mvp-scope.md
+   - docs/architecture.md
+3. Tạo ERD sơ bộ và danh sách bảng/field cho PostgreSQL
+4. Tạo skeleton code structure cho backend FastAPI và frontend React theo đúng module đã đề xuất
+Giữ nguyên giả định hiện tại nếu tôi chưa bổ sung thêm dữ liệu.
+Backlog tuần 1
+Mục tiêu tuần 1
+Có thể demo entry flow MVP bằng simulator.
+Ngày
+Trọng tâm
+Output
+Day 1
+scope + setup + clickup
+repo/workspace + docs + skeleton
+Day 2
+ERD + migrations + auth
+DB baseline + admin login
+Day 3
+state machine + fake adapters
+domain core + mocks
+Day 4
+entry APIs
+entry session + whitelist flow
+Day 5
+paid entry + kiosk UI
+demo entry end-to-end
+Task tuần 1
+Product brief
+MVP scope
+Architecture note
+Repo/workspace setup
+Backend bootstrap
+Frontend bootstrap
+Docker Compose
+ERD
+Migration baseline
+Seed data
+Admin JWT login
+RBAC
+State machine
+Fake LPR
+Fake payment
+Fake barrier/dispenser
+Start entry session API
+Whitelist entry flow
+Paid entry flow
+Entry kiosk UI
+Manual test checklist entry
+Backlog tuần 2
+Mục tiêu tuần 2
+Có thể demo exit flow MVP + admin dashboard cơ bản.
+Ngày
+Trọng tâm
+Output
+Day 1
+exit lookup + rematch
+exit backend flow
+Day 2
+exit UI + logs
+exit kiosk usable
+Day 3
+admin login UI + whitelist UI
+admin usable
+Day 4
+transactions + integration tests
+backend/frontend ổn hơn
+Day 5
+staging skeleton + RC demo
+demo tuần 2
+Task tuần 2
+Exit lookup API
+Exit plate rematch logic
+Close session logic
+Exit kiosk UI
+Transaction log endpoints
+Admin login UI
+Whitelist CRUD UI
+Transaction list UI
+Domain unit tests bổ sung
+Integration tests entry/exit
+Staging deploy baseline
+Smoke test script
+Demo checklist tuần 2
+Gợi ý repo/workspace setup cụ thể
+Vì bạn chưa điền 7 câu trả lời thật, mình chốt mặc định như sau:
+GitHub
+Repo: hpcs
+Branch model: main, develop, feature/*, fix/*
+Mọi merge qua PR
+CI tối thiểu cho backend/frontend
+Antigravity
+Workspace root: HPCS
+Workspaces:
+backend-core
+frontend-kiosk
+frontend-admin
+lpr-service
+device-adapters
+docs-planning
+Rule: mỗi task phải trả artifact + test note + risk note
+Agent assignments:
+Agent 1: backend/domain
+Agent 2: frontend
+Agent 3: integration/test
+Nếu bạn muốn, tin nhắn kế tiếp mình sẽ làm luôn bản “Week 1 + Week 2 ClickUp board đầy đủ tới từng subtask” hoặc “skeleton code FastAPI + React để copy/paste chạy ngay”.
+
+================================================================================
+Reading: Chia task theo backlog.docx
+================================================================================
+Task name
+Parent task
+Epic
+List
+Status
+Priority
+Estimate
+Assignee role
+Dependency
+Due suggestion
+Description
+Acceptance criteria
+Define MVP scope
+Product & Planning
+Backlog
+Ready
+Urgent
+4h
+Product Lead
+Proposal
+Day 1
+Chốt phạm vi MVP theo proposal
+Có tài liệu in-scope/out-of-scope rõ ràng
+Define out-of-scope
+Product & Planning
+Backlog
+Ready
+High
+2h
+Product Lead
+Define MVP scope
+Day 1
+Liệt kê phần không làm trong MVP
+Có danh sách out-of-scope thống nhất
+Write product brief
+Product & Planning
+Backlog
+Ready
+High
+3h
+Product Lead
+Define MVP scope
+Day 1
+Viết brief sản phẩm 1 trang
+Brief có mục tiêu, users, value, MVP, risks
+Define success metrics
+Product & Planning
+Backlog
+Ready
+Medium
+2h
+Product Lead
+Write product brief
+Day 1
+Xác định chỉ số MVP
+Có KPI và điều kiện demo thành công
+Map entry gate flow
+Product & Planning
+Backlog
+Ready
+Urgent
+4h
+Solution Architect
+Define MVP scope
+Day 1
+Vẽ flow cổng vào
+Có success/fail path đầy đủ
+Map exit gate flow
+Product & Planning
+Backlog
+Ready
+Urgent
+4h
+Solution Architect
+Define MVP scope
+Day 1
+Vẽ flow cổng ra
+Có success/fail path đầy đủ
+Map admin flow
+Product & Planning
+Backlog
+Ready
+High
+3h
+Solution Architect
+Define MVP scope
+Day 1
+Vẽ flow dashboard/admin
+Có login, logs, whitelist flow
+Create architecture note
+Architecture & Platform
+Architecture
+Ready
+Urgent
+6h
+Solution Architect
+Map entry gate flow
+Day 2
+Viết architecture note MVP
+Có module map, data flow, integration strategy
+Define service boundaries
+Architecture & Platform
+Architecture
+Ready
+High
+3h
+Tech Lead
+Create architecture note
+Day 2
+Chia module backend rõ ràng
+Không mơ hồ responsibility
+Define hardware integration strategy
+Architecture & Platform
+Architecture
+Ready
+High
+3h
+Solution Architect
+Create architecture note
+Day 2
+Chốt simulator-first + adapter design
+Có contract hardware/LPR rõ
+Design ERD
+Architecture & Platform
+Database Design
+Ready
+Urgent
+8h
+Backend Dev
+Map entry gate flow
+Day 2
+Thiết kế database schema v1
+ERD đủ cho transactions, payments, tickets, plate_reads, logs
+Define enums and state machine
+Architecture & Platform
+Database Design
+Ready
+Urgent
+4h
+Backend Dev
+Design ERD
+Day 2
+Chốt status giao dịch/gate event
+Enum không xung đột, đủ success/fail
+Draft API contract
+Architecture & Platform
+API Design
+Ready
+High
+6h
+Backend Dev
+Create architecture note
+Day 2
+Liệt kê endpoint MVP
+Có request/response cơ bản
+Create repository
+Project Setup
+Backend
+Ready
+High
+1h
+Tech Lead
+Naming agreed
+Day 1
+Tạo GitHub repo chính
+Repo tồn tại, naming đúng
+Add branch rules
+Project Setup
+Backend
+Backlog
+High
+1h
+Tech Lead
+Create repository
+Day 1
+Cấu hình main/develop/protection
+Không push thẳng vào main
+Add issue and PR templates
+Project Setup
+Backend
+Backlog
+Medium
+2h
+Tech Lead
+Create repository
+Day 1
+Thêm template chuẩn
+Có bug/feature/task issue template + PR template
+Setup CI workflow
+Project Setup
+DevOps
+Backlog
+Medium
+3h
+DevOps
+Create repository
+Day 2
+Thêm lint/test CI cơ bản
+CI chạy khi mở PR
+Setup backend skeleton
+Project Setup
+Backend
+Ready
+Urgent
+4h
+Backend Dev
+Create repository
+Day 1
+Dựng FastAPI skeleton
+Chạy local OK, health endpoint OK
+Setup frontend skeleton
+Project Setup
+Frontend
+Ready
+High
+4h
+Frontend Dev
+Create repository
+Day 1
+Dựng React app shell
+Chạy local OK
+Setup Docker Compose
+Project Setup
+DevOps
+Backlog
+High
+3h
+DevOps
+Setup backend skeleton
+Day 2
+Tạo docker-compose cho app + db
+docker compose up chạy được
+Add env management
+Project Setup
+DevOps
+Backlog
+High
+2h
+DevOps
+Setup Docker Compose
+Day 2
+Tạo .env.example và config
+App đọc env đúng
+Implement admin login JWT
+Backend Foundation
+Backend
+Ready
+Urgent
+8h
+Backend Dev
+Design ERD
+Day 3
+Login admin bằng JWT
+Login được, token hợp lệ
+Implement role guard
+Backend Foundation
+Backend
+Backlog
+High
+4h
+Backend Dev
+Implement admin login JWT
+Day 3
+Guard role cho admin/operator
+Endpoint protected theo role
+Add password hashing
+Backend Foundation
+Backend
+Backlog
+High
+2h
+Backend Dev
+Implement admin login JWT
+Day 3
+Hash và verify password
+Không lưu plain text
+Add audit log for auth
+Backend Foundation
+Backend
+Backlog
+Medium
+3h
+Backend Dev
+Implement admin login JWT
+Day 3
+Log auth attempts
+Login success/fail được log
+Create initial migrations
+Backend Foundation
+Backend
+Ready
+Urgent
+6h
+Backend Dev
+Design ERD
+Day 3
+Tạo migration v1
+DB migrate thành công
+Add transaction module
+Backend Foundation
+Backend
+Backlog
+High
+6h
+Backend Dev
+Create initial migrations
+Day 4
+CRUD/service cho transaction
+Tạo/đọc/cập nhật transaction được
+Add payment module
+Backend Foundation
+Backend
+Backlog
+High
+5h
+Backend Dev
+Add transaction module
+Day 4
+Xử lý payment records
+Payment record tạo đúng
+Add ticket module
+Backend Foundation
+Backend
+Backlog
+High
+5h
+Backend Dev
+Add transaction module
+Day 4
+Quản lý ticket/card
+Ticket link đúng transaction
+Add gate event module
+Backend Foundation
+Backend
+Backlog
+High
+5h
+Backend Dev
+Add transaction module
+Day 4
+Log sự kiện cổng
+Event được ghi đủ
+Add whitelist module
+Backend Foundation
+Backend
+Backlog
+High
+4h
+Backend Dev
+Create initial migrations
+Day 4
+API whitelist CRUD
+Plate whitelist lookup hoạt động
+Build vehicle detection handler
+Entry Gate MVP
+Backend
+Backlog
+High
+4h
+Backend Dev
+Add gate event module
+Day 5
+Nhận event detect xe
+Event detect được tạo và log
+Build plate capture and LPR adapter
+Entry Gate MVP
+Backend
+Backlog
+Urgent
+8h
+Backend Dev
+Build vehicle detection handler
+Day 5
+Adapter gọi LPR service/mock
+Lưu plate read + confidence
+Build whitelist check flow
+Entry Gate MVP
+Backend
+Backlog
+High
+4h
+Backend Dev
+Add whitelist module
+Day 5
+Check biển số trong whitelist
+Free-access flow chạy đúng
+Build prepaid payment flow
+Entry Gate MVP
+Backend
+Backlog
+Urgent
+8h
+Backend Dev
+Add payment module
+Day 6
+Xử lý student card/cash mock
+Payment success/fail ghi nhận đúng
+Build ticket issuance flow
+Entry Gate MVP
+Backend
+Backlog
+Urgent
+6h
+Backend Dev
+Add ticket module
+Day 6
+Issue ticket sau payment/whitelist
+Ticket được link transaction
+Build barrier open logic
+Entry Gate MVP
+Backend
+Backlog
+High
+5h
+Backend Dev
+Build ticket issuance flow
+Day 6
+Mở barrier khi hợp lệ
+Không mở barrier nếu chưa đủ điều kiện
+Build entry logging flow
+Entry Gate MVP
+Backend
+Backlog
+High
+3h
+Backend Dev
+Build barrier open logic
+Day 6
+Ghi log đầy đủ cổng vào
+Event trace đầy đủ
+Setup admin login screen
+Admin Dashboard MVP
+Frontend
+Backlog
+Medium
+4h
+Frontend Dev
+Setup frontend skeleton
+Day 5
+Trang login admin
+Gọi API login thành công
+Build dashboard shell
+Admin Dashboard MVP
+Frontend
+Backlog
+Medium
+5h
+Frontend Dev
+Setup admin login screen
+Day 6
+Layout dashboard
+Có route và layout cơ bản
+Build summary API/UI
+Admin Dashboard MVP
+Frontend
+Backlog
+Medium
+6h
+Frontend Dev
+Add transaction module
+Day 7
+KPI summary
+Hiển thị total vehicles/revenue/occupancy
+Build transaction log page
+Admin Dashboard MVP
+Frontend
+Backlog
+Medium
+6h
+Frontend Dev
+Add gate event module
+Day 7
+Trang transaction logs
+Filter và xem log được
+Build whitelist management page
+Admin Dashboard MVP
+Frontend
+Backlog
+Medium
+6h
+Frontend Dev
+Add whitelist module
+Day 8
+CRUD whitelist UI
+Add/edit/remove hoạt động
+Build hardware status page
+Admin Dashboard MVP
+Frontend
+Backlog
+Low
+4h
+Frontend Dev
+Define hardware integration strategy
+Day 9
+Trạng thái thiết bị mock
+Hiển thị online/offline
+Build ticket/card read flow
+Exit Gate MVP
+Backend
+Backlog
+Urgent
+6h
+Backend Dev
+Add ticket module
+Day 8
+Read ticket/card tại cổng ra
+Lấy đúng transaction
+Build exit plate capture
+Exit Gate MVP
+Backend
+Backlog
+Urgent
+6h
+Backend Dev
+Build plate capture and LPR adapter
+Day 8
+Capture plate cổng ra
+Plate read exit được tạo
+Build plate rematch validation
+Exit Gate MVP
+Backend
+Backlog
+Urgent
+8h
+Backend Dev
+Build exit plate capture
+Day 9
+So khớp plate entry/exit
+Match/mismatch đúng logic
+Build exit deny logic
+Exit Gate MVP
+Backend
+Backlog
+High
+4h
+Backend Dev
+Build plate rematch validation
+Day 9
+Từ chối exit khi invalid
+Barrier không mở khi mismatch
+Build valid exit barrier flow
+Exit Gate MVP
+Backend
+Backlog
+High
+4h
+Backend Dev
+Build plate rematch validation
+Day 9
+Mở barrier nếu valid exit
+Transaction complete đúng
+Build exit logging flow
+Exit Gate MVP
+Backend
+Backlog
+High
+3h
+Backend Dev
+Build valid exit barrier flow
+Day 9
+Log đầy đủ cổng ra
+Audit trace hoàn chỉnh
+Setup unit test base
+Quality & Release
+Test Cases
+Backlog
+Medium
+3h
+QA / Backend Dev
+Setup backend skeleton
+Day 10
+Base test framework
+Chạy được test đầu tiên
+Setup integration test base
+Quality & Release
+Test Cases
+Backlog
+High
+4h
+QA / Backend Dev
+Build entry logging flow
+Day 10
+Integration test cho core flow
+Có ít nhất 1 test pass
+Create manual smoke checklist
+Quality & Release
+Test Cases
+Backlog
+High
+2h
+QA
+Build dashboard shell
+Day 10
+Checklist smoke test
+Có checklist dùng được
+Setup staging deploy
+Quality & Release
+Staging
+Backlog
+Medium
+6h
+DevOps
+Setup Docker Compose
+Week 2 end
+Deploy staging đầu tiên
+Staging truy cập được
+Create rollback plan
+Quality & Release
+Release Checklist
+Backlog
+Medium
+2h
+DevOps
+Setup staging deploy
+Week 2 end
+Kế hoạch rollback
+Có step rollback rõ ràng
+
+================================================================================
+Reading: Tổng việc code.docx
+================================================================================
+Task name
+Priority
+Estimate
+Dependency
+Description
+Acceptance criteria
+REPO - Create repository
+High
+1h
+Naming agreed
+Tạo repo GitHub chính của dự án
+Repo tồn tại, naming đúng, push được
+REPO - Add branch rules
+High
+1h
+REPO - Create repository
+Thiết lập branch strategy và protection
+Không push thẳng vào main, cần PR review
+DEVOPS - Setup CI workflow
+Medium
+3h
+REPO - Create repository
+Thêm CI lint/test cơ bản
+PR có CI check chạy thành công
+BACKEND - Setup FastAPI skeleton
+Urgent
+4h
+REPO - Create repository
+Dựng backend skeleton
+Chạy local được và có /health
+FRONTEND - Setup React skeleton
+High
+4h
+REPO - Create repository
+Dựng web app shell
+Chạy local được và có route cơ bản
+DEVOPS - Setup Docker Compose
+High
+3h
+BACKEND - Setup FastAPI skeleton
+Tạo compose cho app + db
+docker compose up chạy được DB
+DEVOPS - Add env management
+High
+2h
+DEVOPS - Setup Docker Compose
+Tạo .env.example và config loading
+App đọc env đúng, không hardcode secrets
+AUTH - Implement admin login JWT
+Urgent
+8h
+DB - Design ERD
+Xây login admin bằng JWT
+Admin login được, trả access token hợp lệ
+AUTH - Implement role guard
+High
+4h
+AUTH - Implement admin login JWT
+Thêm phân quyền API theo role
+Endpoint protected hoạt động đúng
+AUTH - Add password hashing
+High
+2h
+AUTH - Implement admin login JWT
+Hash và verify mật khẩu
+Không lưu plain text password
+AUTH - Add audit log for auth
+Medium
+3h
+AUTH - Implement admin login JWT
+Ghi log login success/fail
+Có auth log truy vết được
+DB - Create initial migrations
+Urgent
+6h
+DB - Design ERD
+Tạo migration v1
+DB migrate thành công từ đầu
+CORE - Add transaction module
+High
+6h
+DB - Create initial migrations
+Tạo service cho transaction
+Tạo và cập nhật transaction được
+CORE - Add payment module
+High
+5h
+CORE - Add transaction module
+Tạo payment record flow
+Payment success/fail lưu đúng
+CORE - Add ticket module
+High
+5h
+CORE - Add transaction module
+Quản lý issue ticket/card
+Ticket link đúng transaction
+CORE - Add gate event module
+High
+5h
+CORE - Add transaction module
+Log sự kiện cổng
+Mọi event chính được ghi lại
+CORE - Add whitelist module
+High
+4h
+DB - Create initial migrations
+API và lookup whitelist
+Lookup biển số whitelist chạy đúng
+ENTRY - Build vehicle detection handler
+High
+4h
+CORE - Add gate event module
+Xử lý event detect xe vào
+Event detect được tạo và log
+ENTRY - Build plate capture and LPR adapter
+Urgent
+8h
+ENTRY - Build vehicle detection handler
+Gọi LPR service/mock và lưu kết quả
+Lưu plate read và confidence thành công
+ENTRY - Build whitelist check flow
+High
+4h
+CORE - Add whitelist module
+Check free access theo whitelist
+Xe whitelist đi đúng flow miễn phí
+ENTRY - Build prepaid payment flow
+Urgent
+8h
+CORE - Add payment module
+Xử lý payment student card/cash mock
+Payment trạng thái đúng, có log
+ENTRY - Build ticket issuance flow
+Urgent
+6h
+CORE - Add ticket module
+Issue ticket sau payment/whitelist
+Ticket/card được link transaction chính xác
+ENTRY - Build barrier open logic
+High
+5h
+ENTRY - Build ticket issuance flow
+Mở barrier khi đủ điều kiện
+Barrier không mở nếu payment/verify chưa hợp lệ
+ENTRY - Build entry logging flow
+High
+3h
+ENTRY - Build barrier open logic
+Ghi log đầy đủ cổng vào
+Trace entry flow đầy đủ từ detect đến open
+UI - Setup admin login screen
+Medium
+4h
+FRONTEND - Setup React skeleton
+Tạo màn hình login admin
+Gọi API login thành công và lưu auth state
+UI - Build dashboard shell
+Medium
+5h
+UI - Setup admin login screen
+Tạo layout dashboard
+Có layout, menu, route cơ bản
+DASHBOARD - Build summary API/UI
+Medium
+6h
+CORE - Add transaction module
+Hiển thị KPI tổng quan
+Có total vehicles, revenue, occupancy
+DASHBOARD - Build transaction log page
+Medium
+6h
+CORE - Add gate event module
+Tạo trang transaction logs
+Xem danh sách log và filter cơ bản được
+DASHBOARD - Build whitelist management page
+Medium
+6h
+CORE - Add whitelist module
+Tạo UI CRUD whitelist
+Add/edit/remove hoạt động
+DASHBOARD - Build hardware status page
+Low
+4h
+ARCH - Define hardware integration strategy
+Tạo trang trạng thái thiết bị mock
+Hiển thị online/offline mock được
+EXIT - Build ticket/card read flow
+Urgent
+6h
+CORE - Add ticket module
+Đọc ticket/card tại cổng ra
+Lấy đúng transaction chưa completed
+EXIT - Build exit plate capture
+Urgent
+6h
+ENTRY - Build plate capture and LPR adapter
+Capture plate tại cổng ra
+Exit plate read được lưu đúng
+EXIT - Build plate rematch validation
+Urgent
+8h
+EXIT - Build exit plate capture
+So khớp plate entry và exit
+Match/mismatch được xác định đúng
+EXIT - Build exit deny logic
+High
+4h
+EXIT - Build plate rematch validation
+Từ chối xe ra nếu invalid
+Barrier không mở khi mismatch hoặc ticket sai
+EXIT - Build valid exit barrier flow
+High
+4h
+EXIT - Build plate rematch validation
+Mở barrier khi exit hợp lệ
+Transaction được complete đúng
+EXIT - Build exit logging flow
+High
+3h
+EXIT - Build valid exit barrier flow
+Ghi log đầy đủ cổng ra
+Audit trail exit đầy đủ
+TEST - Setup unit test base
+Medium
+3h
+BACKEND - Setup FastAPI skeleton
+Setup framework unit test
+Chạy được test đầu tiên
+TEST - Setup integration test base
+High
+4h
+ENTRY - Build entry logging flow
+Setup integration test core flow
+Có ít nhất 1 integration test pass
+TEST - Create manual smoke checklist
+High
+2h
+UI - Build dashboard shell
+Tạo checklist smoke test
+Có checklist dùng cho demo nội bộ
+RELEASE - Setup staging deploy
+Medium
+6h
+DEVOPS - Setup Docker Compose
+Deploy staging đầu tiên
+Staging truy cập được và có health check

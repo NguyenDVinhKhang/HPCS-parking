@@ -1,0 +1,12 @@
+{
+  "serial_port": "COM9",
+  "baud_rate": 115200,
+  "api_url": "http://localhost:8000/api/gate",
+  "api_timeout_s": 8,
+  "api_retry_count": 2,
+  "default_gate_mode": "IN",
+  "ping_interval_s": 30,
+  "reconnect_delay_s": 5,
+  "log_level": "INFO",
+  "log_to_file": true
+}
