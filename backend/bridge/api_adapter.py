@@ -12,12 +12,22 @@ chỉ cần sửa file này, KHÔNG đụng các file khác.
 
 from __future__ import annotations
 import logging
+import os
 import time
 from dataclasses import dataclass
 
 import requests
+from dotenv import load_dotenv
 
+load_dotenv()
 log = logging.getLogger("bridge.api")
+
+# Timeout thích nghi theo camera mode:
+# Camera ON (EasyOCR CPU) → OCR mất 3–5s → cần timeout cao hơn
+# Camera OFF (DB only)    → < 1s          → timeout 3s là đủ
+_CAMERA_ENABLED = os.getenv("CAMERA_ENABLED", "false").lower() == "true"
+_DEFAULT_TIMEOUT = 8 if _CAMERA_ENABLED else 3
+log.info("[ApiAdapter] CAMERA_ENABLED=%s → HTTP timeout=%ds", _CAMERA_ENABLED, _DEFAULT_TIMEOUT)
 
 
 @dataclass
@@ -39,8 +49,9 @@ class ApiAdapter:
     Thay đổi API → sửa class này, không ảnh hưởng GateController.
     """
 
-    def __init__(self, base_url: str, timeout: int = 8, retry: int = 2):
+    def __init__(self, base_url: str, timeout: int = _DEFAULT_TIMEOUT, retry: int = 1):
         # base_url = "http://localhost:8000/api/gate"
+        # timeout mặc định: 8s khi CAMERA_ENABLED=true, 3s khi false
         self._entry_url = f"{base_url}/entry"
         self._exit_url  = f"{base_url}/exit"
         self._timeout   = timeout

@@ -45,3 +45,11 @@ yarn-error.log*
 next-env.d.ts
 
 skills
+# Python cache
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+
+# Bridge runtime logs
+backend/bridge.log
+

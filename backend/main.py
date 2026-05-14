@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()   # phải gọi TRƯỚC khi import camera.scanner (đọc CAMERA_ENABLED)
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles

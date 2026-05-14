@@ -46,7 +46,7 @@ from pydantic import BaseModel
 
 import database
 import models
-from camera.scanner import camera_manager, scan_plate
+from camera.scanner import camera_manager, scan_plate, _CAMERA_ENABLED
 from payment.student_bank import StudentBankPayment
 from payment.guest_qr import GuestQRPayment
 from payment.guest_cash import GuestCashPayment
@@ -74,40 +74,7 @@ PAYMENT_REGISTRY = {
     "GUEST_CASH": GuestCashPayment(),
     # Thêm mới ở đây — không cần sửa gì khác:
     # "GUEST_MOMO": GuestMomoPayment(),
-    # "GUEST_VNPAY": GuestVNPayPayment(),
 }
-
-
-# ─────────────────────────────────────────────────────────────
-#  Helper: camera capture với fallback UNKNOWN cho GUEST
-# ─────────────────────────────────────────────────────────────
-def _capture_plate(session_type: str) -> tuple[str | None, str]:
-    """
-    Chụp ảnh và OCR biển số.
-    Trả về (base64_img, plate_number).
-
-    - STUDENT: camera lỗi → raise 500 (bắt buộc phải có biển)
-    - GUEST:   camera lỗi → trả về (None, "UNKNOWN") — không crash
-    """
-    base64_img = camera_manager.capture_frame()
-
-    if not base64_img:
-        if session_type == "STUDENT":
-            raise HTTPException(status_code=500, detail="Lỗi Camera: Không lấy được hình ảnh.")
-        return None, "UNKNOWN"
-
-    result = scan_plate(base64_img)
-    plate  = result.get("plate_number", "")
-
-    if not plate or plate == "Khong thay bien so":
-        if session_type == "STUDENT":
-            raise HTTPException(status_code=400, detail="Không nhìn rõ biển số, yêu cầu lùi xe lại.")
-        return base64_img, "UNKNOWN"   # GUEST → UNKNOWN, không crash
-
-    return base64_img, plate
-
-
-# ─────────────────────────────────────────────────────────────
 #  POST /api/gate/entry — Xe vào
 # ─────────────────────────────────────────────────────────────
 class EntryRequest(BaseModel):
@@ -116,18 +83,21 @@ class EntryRequest(BaseModel):
 @router.post("/entry")
 def handle_entry(request: EntryRequest, db: Session = Depends(database.get_db)):
     """
-    Luồng xe vào:
-      1. Phân loại thẻ RFID (SV hay khách)
-      2. Camera OCR biển số
-      3. So khớp biển (chỉ SV)
-      4. Tạo ParkingSession OPEN → mở barrier
-    """
-    rfid         = request.rfid_code
-    session_type = None
-    student      = None
-    guest_card   = None
+    MODE 1 — CAMERA_ENABLED=true (triển khai thực tế):
+      - Thẻ SV : OCR biển số → kiểm tra UID + biển trong DB → đúng → mở | sai → từ chối
+      - Thẻ trắng (có trong DB, AVAILABLE) : cho vào không cần kiểm biển
+      - Thẻ trắng (không có trong DB)         : từ chối
 
-    # ── Bước 1: Phân loại thẻ ────────────────────────────────
+    MODE 2 — CAMERA_ENABLED=false (demo, không có camera):
+      - Thẻ SV  : kiểm tra UID trong DB → có → mở (không kiểm biển)
+      - Thẻ trắng (có trong DB) : cho vào
+      - Thẻ không có trong DB    : từ chối
+    """
+    rfid       = request.rfid_code
+    student    = None
+    guest_card = None
+
+    # ── Bước 1: Phân loại thẻ ──────────────────────────────────
     student = db.query(models.Student).filter(
         models.Student.rfid_card_code == rfid
     ).first()
@@ -139,57 +109,80 @@ def handle_entry(request: EntryRequest, db: Session = Depends(database.get_db)):
             models.GuestCard.rfid_card_code == rfid
         ).first()
         if not guest_card:
-            raise HTTPException(status_code=404, detail="Thẻ không hợp lệ (Không có trong hệ thống).")
+            raise HTTPException(status_code=404,
+                detail="Thẻ không hợp lệ — không có trong hệ thống.")
         if guest_card.status == "IN_USE":
-            raise HTTPException(status_code=400, detail="Thẻ khách này đang được sử dụng trong bãi!")
+            raise HTTPException(status_code=400,
+                detail="Thẻ khách này đang được sử dụng trong bãi!")
         session_type = "GUEST"
 
-    # ── Bước 2: Camera OCR ───────────────────────────────────
-    base64_img, plate_number = _capture_plate(session_type)
+    # ── Bước 2+3: Camera OCR ──────────────────────────────────────
+    plate_number = "UNKNOWN"
+    base64_img   = None
 
-    # ── Bước 3: So khớp biển (SV) ────────────────────────────
-    if session_type == "STUDENT":
-        clean_scan = re.sub(r'[^A-Z0-9]', '', plate_number.upper())
-        vehicles   = db.query(models.Vehicle).filter(
-            models.Vehicle.student_id == student.id
-        ).all()
-        matched = any(
-            clean_scan == re.sub(r'[^A-Z0-9]', '', v.plate_number.upper())
-            for v in vehicles
-        )
-        if not matched:
-            raise HTTPException(
-                status_code=400,
-                detail=f"CẢNH BÁO: Biển [{plate_number}] không khớp xe của SV [{student.full_name}]!"
+    if _CAMERA_ENABLED:
+        # Camera bật: chụp ảnh cho TẤT CẢ loại thẻ (SV + khách)
+        base64_img = camera_manager.capture_frame()
+
+        if base64_img:
+            result       = scan_plate(base64_img)
+            plate_number = result.get("plate_number", "")
+            if not plate_number or plate_number in ("Khong thay bien so", "KHÔNG THẤY BIỂN SỐ"):
+                plate_number = "UNKNOWN"
+
+        if session_type == "STUDENT":
+            # SV: bắt buộc đọc được biển và khớp với xe đăng ký
+            if not base64_img:
+                raise HTTPException(status_code=500,
+                    detail="Lỗi Camera: Không lấy được hình ảnh.")
+            if plate_number == "UNKNOWN":
+                raise HTTPException(status_code=400,
+                    detail="Không nhìn rõ biển số — yêu cầu lùi xe lại.")
+
+            clean_scan = re.sub(r'[^A-Z0-9]', '', plate_number.upper())
+            vehicles   = db.query(models.Vehicle).filter(
+                models.Vehicle.student_id == student.id
+            ).all()
+            matched = any(
+                clean_scan == re.sub(r'[^A-Z0-9]', '', v.plate_number.upper())
+                for v in vehicles
             )
+            if not matched:
+                raise HTTPException(status_code=400,
+                    detail=f"CẢNH BÁO: Biển [{plate_number}] không khớp xe của SV [{student.full_name}]!")
 
-    # ── Bước 4: Lưu DB & mở cổng ─────────────────────────────
+        # GUEST: chụp + lưu biển số để tra cứu — KHÔNG cần khớp (thẻ trắng không có xe đăng ký)
+
+    # MODE 2 (camera tắt): bỏ qua OCR cho tất cả thẻ — plate_number = "UNKNOWN"
+
+    # ── Bước 4: Lưu DB & mở cổng ──────────────────────────────────
     if guest_card:
         guest_card.status = "IN_USE"
 
-    # Lưu ảnh ra file, DB chỉ lưu đường dẫn tương đối
     entry_image_path = save_plate_image(base64_img, rfid, direction="entry")
 
     new_session = models.ParkingSession(
         rfid_code          = rfid,
         session_type       = session_type,
         entry_plate_number = plate_number,
-        entry_plate_image  = entry_image_path,   # "plates/entry/20260510_223000_X.jpg"
+        entry_plate_image  = entry_image_path,
         status             = "OPEN",
     )
     db.add(new_session)
     db.commit()
     db.refresh(new_session)
 
+    mode_label = "Camera ON" if _CAMERA_ENABLED else "Demo (Camera OFF)"
     return {
         "success":      True,
-        "message":      "Mở Barrier cổng VÀO thành công!",
+        "message":      f"Mở Barrier cổng VÀO thành công! [{mode_label}]",
         "session_id":   new_session.session_id,
         "session_type": session_type,
         "plate_number": plate_number,
         "name":         student.full_name if student else "Khách Vãng Lai",
         "barrier_open": True,
-        "image_path":   entry_image_path,   # để frontend hiển thị ảnh
+        "image_path":   entry_image_path,
+        "camera_mode":  _CAMERA_ENABLED,
     }
 
 
