@@ -1,6 +1,6 @@
 # HPCS Parking System — Hướng dẫn chạy dự án
 
-> Cập nhật: 2026-05-10 23:46 — Phản ánh đúng cấu hình sau khi debug
+> Cập nhật: May 14, 2026 — Thêm start_hpcs.ps1 quick-start và File Reference
 
 ---
 
@@ -172,17 +172,23 @@ npm run dev
 
 ### ③ Terminal 3 — Bridge (sau khi cắm ESP32)
 
+**Cách nhanh — dùng `start_hpcs.ps1` (khởi động Backend + Bridge cùng lúc):**
 ```powershell
 cd E:\Data\Work\Capstone1_Test\Document\HPCS-main\backend
+.\start_hpcs.ps1              # mặc định COM9, cổng VÀO
+.\start_hpcs.ps1 -Port COM3  # đổi cổng
+.\start_hpcs.ps1 -Port COM9 -GateMode OUT  # cổng RA
+```
+> Ctrl+C → tự động dừng cả uvicorn lẫn bridge, giải phóng COM port.
 
-# Cổng VÀO (mặc định)
-python -m bridge --port COM9
-
-# Cổng RA
-python -m bridge --port COM9 --mode OUT
+**Cách thủ công (tách Terminal):**
+```powershell
+cd E:\Data\Work\Capstone1_Test\Document\HPCS-main\backend
+python -m bridge --port COM9           # cổng VÀO
+python -m bridge --port COM9 --mode OUT  # cổng RA
 ```
 
-> Bridge sẽ tự động khởi động **CommandServer HTTP trên port 5001**.
+> Bridge tự động khởi động **CommandServer HTTP trên port 5001**.
 > Kiểm tra ESP32 đang ở COM nào: Device Manager → Ports (COM & LPT)
 
 ---
@@ -334,3 +340,109 @@ git push origin main
 
 > ⚠️ **KHÔNG commit** file `backend/.env` — chứa thông tin nhạy cảm!
 > File này đã được thêm vào `.gitignore`.
+
+---
+
+## File Reference — Công dụng từng file code
+
+### 🟦 Next.js Frontend (`src/`)
+
+| File | Công dụng |
+|---|---|
+| `src/auth.ts` | NextAuth v5 config — xác thực session guard/admin |
+| `src/proxy.ts` | Proxy HTTP từ Next.js đến Bridge CommandServer (port 5001) |
+| `src/app/layout.tsx` | Root layout — bootstrap `payment-sync-scheduler` khi server khởi động |
+| `src/app/page.tsx` | Trang chủ dashboard — tổng quan + nút Sync XGate |
+| `src/app/(auth)/login/` | Trang đăng nhập (guard / admin) |
+| `src/app/(main)/` | Các trang dashboard được bảo vệ (camera, students, vehicles, transactions...) |
+| `src/app/(pay)/payment/` | Trang thanh toán Guest — hiển thị QR + đối soát XGate |
+| `src/app/api/gate/` | API route gọi Bridge: mở/đóng cổng |
+| `src/app/api/payments/gate/` | Tạo PayOS invoice + QR code |
+| `src/app/api/payments/sync/` | Trigger đối soát XGate thủ công |
+| `src/app/api/payments/reconcile/` | Kiểm tra trạng thái 1 invoice cụ thể qua XGate |
+| `src/app/api/students/topup/` | Nạp tiền cho sinh viên |
+| `src/lib/db.ts` | MySQL2 connection pool (dùng cho tất cả DB query) |
+| `src/lib/payments.ts` | PAYMENT_REGISTRY — query payments table, update trạng thái |
+| `src/lib/payment-qr.ts` | Helper tạo PayOS QR (gọi PayOS API, lưu invoice) |
+| `src/lib/payment-sync.ts` | Đối soát XGate: fetch giao dịch ngân hàng → match invoice → cập nhật DB |
+| `src/lib/payment-sync-scheduler.ts` | Auto-chạy `payment-sync` mỗi 5 phút (bootstrapped trong layout.tsx) |
+| `src/lib/xgate.ts` | XGate API client — fetch danh sách giao dịch ngân hàng thực tế |
+| `src/lib/camera.ts` | Gọi FastAPI `/api/camera/scan` để chụp ảnh + OCR từ frontend |
+| `src/lib/reports.ts` | Query doanh thu, thống kê theo ngày |
+| `src/lib/utils.ts` | Shared utilities (format tiền, ngày...) |
+
+---
+
+### 🟩 Python Backend (`backend/`)
+
+| File | Công dụng |
+|---|---|
+| `main.py` | FastAPI app entry point — mount routers, static files, load env |
+| `models.py` | SQLAlchemy ORM models (Student, GuestCard, ParkingSession, Payment...) |
+| `database.py` | DB engine + `get_db()` dependency cho FastAPI |
+| `payos_router.py` | PayOS webhook endpoint — nhận callback khi QR được thanh toán |
+| `bridge_config.json` | Cấu hình Bridge: COM port, timeout, retry, log level |
+| `start_hpcs.ps1` | PowerShell script khởi động Bridge (background) + Uvicorn (foreground) cùng lúc |
+
+#### Routers
+| File | Công dụng |
+|---|---|
+| `routers/gate_router.py` | `POST /api/gate/entry` và `/exit` — xử lý xe vào/ra: RFID → OCR → DB → barrier |
+| `routers/students.py` | CRUD sinh viên, xem số dư, nạp tiền |
+| `routers/users.py` | Đăng nhập guard/admin |
+
+#### Payment Strategy Pattern
+| File | Công dụng |
+|---|---|
+| `payment/base.py` | Abstract class `PaymentStrategy` |
+| `payment/student_bank.py` | Luồng sinh viên: tự động trừ số dư tài khoản |
+| `payment/guest_qr.py` | Luồng khách VietQR: tạo PayOS invoice → chờ XGate xác nhận |
+| `payment/guest_cash.py` | Luồng khách tiền mặt: guard xác nhận thủ công → mở cổng |
+
+#### Bridge (`bridge/`) — chạy độc lập với Uvicorn
+| File | Công dụng |
+|---|---|
+| `bridge/__main__.py` | Entry point: `python -m bridge` — parse CLI args, khởi động 2 thread |
+| `bridge/gate_controller.py` | Thread 1: đọc Serial ESP32 (IN:{UID}, OUT:{UID}) → gọi ApiAdapter |
+| `bridge/api_adapter.py` | Gọi FastAPI `/api/gate/entry|exit` — xử lý response → trả `GateDecision` |
+| `bridge/serial_manager.py` | Quản lý kết nối COM: auto-reconnect khi mất kết nối |
+| `bridge/config.py` | Load `bridge_config.json` + apply CLI overrides |
+
+#### Camera & Utils
+| File | Công dụng |
+|---|---|
+| `camera/scanner.py` | EasyOCR + OpenCV ALPR: nhận base64 ảnh → trả `plate_number` (hoặc stub khi CAMERA_ENABLED=false) |
+| `utils/image_store.py` | Lưu ảnh biển số vào `static/plates/entry|exit/` — trả đường dẫn tương đối |
+
+---
+
+### 🟧 Database (`database/`)
+
+| File | Công dụng |
+|---|---|
+| `database/schema_v2.sql` | Schema đầy đủ hiện tại — chạy file này để tạo DB từ đầu |
+| `migrations/2026-04-13_payments_compat.sql` | Thêm cột `xgate_reference` vào bảng payments |
+| `migrations/2026-05-10_add_balance.sql` | Thêm cột `balance` vào bảng students |
+| `migrations/2026-05-10_image_path_columns.sql` | Thêm cột `entry_plate_image`, `exit_plate_image` vào parking_sessions |
+| `migrations/2026-05-10_restructure_students.sql` | Đổi cấu trúc bảng students (tách `rfid_card_code` riêng) |
+
+> **Lưu ý:** Migration chỉ cần chạy nếu bạn đang **nâng cấp DB cũ**.
+> Nếu tạo DB mới từ đầu → chỉ cần chạy `schema_v2.sql` là đủ.
+
+---
+
+### 🔵 Luồng dữ liệu tóm tắt
+
+```
+ESP32 Serial
+  └─► bridge/gate_controller.py  (Thread 1, đọc serial)
+        └─► bridge/api_adapter.py (HTTP POST → FastAPI)
+              └─► routers/gate_router.py
+                    ├─► camera/scanner.py  (OCR biển số)
+                    ├─► payment/ (Strategy Pattern)
+                    └─► DB (ParkingSession)
+
+Guest QR Payment:
+  PayOS QR → Khách chuyển khoản → XGate poll ngân hàng
+    └─► payment-sync.ts → match invoice → PAID → OPEN-OUT signal
+```
